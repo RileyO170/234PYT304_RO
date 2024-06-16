@@ -1,0 +1,112 @@
+@import url('https://ucde-kylo.s3.amazonaws.com/fonts/proxima_nova/proxima_nova.css');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url("https://ucde-kylo.s3.amazonaws.com/custom_bootstrap.css");
+@import url("https://ucde-kylo.s3.amazonaws.com/fontawesome/css/fontawesome.min.css");
+@import url("https://ucde-kylo.s3.amazonaws.com/fontawesome/css/regular.min.css");
+
+.cpe-container {
+	font-family: 'Proxima Nova', sans-serif !important;	
+}
+
+.cpe-container .course-title-container {
+	text-shadow: #000000 5px 5px 20px;
+    text-transform: uppercase;
+	padding: 8%;
+}
+
+.cpe-container .course-subtitle {
+	padding-left: 30px;
+    font-style: italic;
+}
+
+.cpe-container .card {
+	margin-bottom: 25px;
+}
+
+.cpe-container .banner {
+	height: 275px;
+   	object-fit: cover;
+}
+
+.cpe-container .tile {
+	background-color: #002855 !important;
+    background-image: linear-gradient(18deg, #002855 45%, #DAAA00 90%) !important;
+    color: white !important;
+    overflow: hidden;
+}
+
+.cpe-container .card-link {
+	text-decoration: none !important;
+}
+
+.cpe-container .card-link i {
+	display: none;
+	left: -25px;
+	top: 2px;
+	font-size: inherit;
+}
+
+.cpe-container .card-link:hover{
+	text-decoration: none !important;
+}
+
+.cpe-container .lead {
+	margin-top: 475px
+}
+
+.cpe-container .instructor {
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+.cpe-container .instructor-image {
+	max-height: 100px !important;
+	max-width: 100px !important;
+}
+
+.cpe-container .instructor-name {
+	font-weight: 600;
+}
+
+.cpe-container .tile-row{
+	margin: auto;
+	padding-top: 25px;
+}
+
+.cpe-container .card-link:hover .card-title span{
+	animation-timing-function: ease-in;
+	-webkit-animation-timing-function: ease-in;
+	animation: animation-ease 2s;
+	left: 10px;
+	position: relative;
+}
+
+.cpe-container .card-link:hover .card-title i {
+	animation-timing-function: ease-in;
+	-webkit-animation-timing-function: ease-in;
+	animation: animation-icon 2s;
+	left: 0px;
+	position: relative;
+	display: inline;
+}
+
+@-webkit-keyframes animation-ease {
+	from {left: -15px;}
+	to {left: 10px;}
+}
+
+@keyframes animation-ease {
+	from {left: -15px;}
+	to {left: 10px;}
+}
+
+@-webkit-keyframes animation-icon {
+	from {left: -45px;}
+	to {left: 0px;}
+}
+
+@keyframes animation-icon {
+	from {left: -45px;}
+	to {left: 0px;}
+}

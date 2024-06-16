@@ -1,0 +1,14 @@
+if(window.location.href == "https://extensiononline.ucdavis.edu/login/canvas"){
+	change_alt_text();
+}
+
+function change_alt_text(){
+	if(document.getElementsByClassName("ic-Login-header__logo"[0]) == null){
+			return;
+		}
+		
+	var div = document.getElementsByClassName("ic-Login-header__logo")[0];
+	var img = div.childNodes[1];
+
+	img.alt = "UC Davis Extension Online Learning Center Login";
+}

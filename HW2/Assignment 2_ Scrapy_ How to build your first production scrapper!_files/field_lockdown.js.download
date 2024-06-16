@@ -1,0 +1,225 @@
+$(document).ready(function () {
+	console.log(ENV.ignore_lockdown);
+	if(!contains(ENV.current_user_roles, 'admin') && ENV.ignore_lockdown !== true){
+		console.log("Locking Fields");
+		disable_course_settings();
+		disable_assignment_settings();
+		disable_discussion_settings();
+		disable_quiz_settings();
+		disable_add_assignment();
+		disable_add_quiz();
+		disable_module_add_new();
+		disable_delete_assignment();
+	}
+	console.log(ENV.ignore_lockdown);
+});
+
+set_course_settings_size();
+
+
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function disable_course_settings(){
+	if(document.getElementById("course_name") == null){
+		return;
+	}
+	document.getElementById("course_name").disabled = true;
+	document.getElementById("course_course_code").disabled = true;
+	document.getElementById("course_time_zone").disabled = true;
+	//document.getElementById("course_sis_source_id").disabled = true;
+	document.getElementById("course_account_id").disabled = true;
+	document.getElementById("course_enrollment_term_id").disabled = true;
+	document.getElementById("availability_options_container").style.display='none';
+	// document.getElementById("course_start_at").disabled = true;
+	// document.getElementById("course_conclude_at").disabled = true;
+	document.getElementById("course_restrict_enrollments_to_course_dates").disabled = true;
+	document.getElementById("course_locale").disabled = true;
+	document.getElementById("course_grading_scheme").style.display='none';
+	// document.getElementById("course_grading_standard_enabled").disabled = true;
+	document.getElementsByClassName("edit_letter_grades_link")[0].style.visibility='hidden';
+	document.getElementById("course_license").disabled = true;
+	document.getElementById("course_course_visibility").disabled = true;
+	document.getElementById("course_custom_course_visibility").disabled = true;
+	document.getElementById("course_indexed").disabled = true;
+	document.getElementById("course_course_format").disabled = true;
+	//document.getElementById("course_organize_epub_by_content_type").disabled = true;
+	document.getElementById("course_public_description").disabled = true;
+	document.getElementById("course_allow_student_forum_attachments").disabled = true;
+	document.getElementById("course_allow_student_discussion_topics").disabled = true;
+	document.getElementById("course_allow_student_discussion_editing").disabled = true;
+	document.getElementById("course_allow_student_organized_groups").disabled = true;
+	document.getElementById("course_hide_final_grades").disabled = true;
+	document.getElementById("course_hide_distribution_graphs").disabled = true;
+	document.getElementById("course_lock_all_announcements").disabled = true;
+	document.getElementById("course_default_wiki_editing_roles").disabled = true;
+	document.getElementById("course_name").disabled = true;
+	document.getElementsByClassName("btn btn-primary")[0].style.visibility="hidden";
+	//document.getElementsByClassName("btn button-sidebar-wide reset_course_content_button")[0].style.visibility="hidden";
+	$( ".ui-datepicker-trigger.btn" ).each(function(index){ $(this).hide()});
+
+	var el = document.createElement("div");
+	var start = document.createElement("div");
+	var end = document.createElement("div");
+
+	el.style.width = '75%';
+	start.textContent = "Start Date: " + new Date(document.getElementById("course_start_at").value).toLocaleString();
+	end.textContent = "End Date: " + new Date(document.getElementById("course_conclude_at").value).toLocaleString();
+
+	el.appendChild(start);
+	el.appendChild(end);
+	document.getElementsByClassName("course-participation-row")[0].appendChild(el);
+
+	var el = document.createElement("div");
+	var grade = document.createElement("div");
+
+	el.style.width = '75%';
+	grade.textContent = document.getElementById("grading_standard_title").value;
+
+	el.appendChild(grade);
+	document.getElementById("course_grading_scheme").parentNode.appendChild(el);
+}
+
+function set_course_settings_size(){
+	if(document.getElementById("course_name") == null){
+		return;
+	}
+	document.getElementById("course_name").style = "width: 200px;";
+	document.getElementById("course_course_code").style = "width: 200px;";
+	document.getElementById("course_sis_source_id").style = "width: 200px;";
+}
+
+function disable_assignment_settings(){
+	if(document.getElementById("assignment_points_possible") == null){
+		return;
+	}
+	document.getElementById("assignment_points_possible").style.visibility = 'hidden';
+	var grade = document.createElement('grade');
+	grade.innerHTML = document.getElementById("assignment_points_possible").value;
+	document.getElementById("assignment_points_possible").parentNode.insertBefore(grade, document.getElementById("assignment_points_possible"));
+	document.getElementById("assignment_group_id").disabled = true;
+	document.getElementById("assignment_grading_type").style.visibility = 'hidden';
+	var grade_type = document.createElement('grade_type');
+	grade_type.innerHTML = document.getElementById("assignment_grading_type").value;
+	document.getElementById("assignment_grading_type").parentNode.insertBefore(grade_type, document.getElementById("assignment_grading_type"));
+	document.getElementById("assignment_submission_type").style.visibility = 'hidden';
+	var sub = document.createElement('sub');
+	sub.innerHTML = 'Submission Type: ' + document.getElementById("assignment_submission_type").value;
+	document.getElementById("assignment_submission_type").parentNode.insertBefore(sub, document.getElementById("assignment_submission_type"));
+	document.getElementById("assignment_online_submission_types").style.visibility = 'hidden';
+	document.getElementById("assignment_external_tool_tag_attributes_url").disabled = true;
+	document.getElementById("assignment_external_tool_tag_attributes_url_find").disabled = true;
+	document.getElementById("assignment_external_tool_tag_attributes_new_tab").disabled = true;
+	document.getElementById("has_group_category").disabled = true;
+	document.getElementById("assignment_grade_students_individually").disabled = true;
+	document.getElementById("assignment_group_category_id").disabled = true;
+	document.getElementById("assignment_peer_reviews").disabled = true;
+	document.getElementById("assignment_moderated_grading").disabled = true;
+	document.getElementById("assignment_peer_reviews").disabled = true;
+	document.getElementById("assignment_manual_peer_reviews").disabled = true;
+	document.getElementById("assignment_automatic_peer_reviews").disabled = true;
+	document.getElementById("assignment_peer_review_count").disabled = true;
+	document.getElementById("assignment_peer_reviews_assign_at").disabled = true;
+	document.getElementById("anonymous_peer_reviews").disabled = true;
+}
+
+function disable_discussion_settings(){
+	if(document.getElementById("use_for_grading") == null){
+		return;
+	}
+	document.getElementById("use_for_grading").style.visibility = 'hidden';
+	setTimeout(function(){
+		document.getElementById("discussion_topic_assignment_points_possible").disabled = true;
+		document.getElementById("assignment_grading_type").style.visibility = 'hidden';
+	var grade_type = document.createElement('grade_type');
+	grade_type.innerHTML = document.getElementById("assignment_grading_type").value;
+	document.getElementById("assignment_grading_type").parentNode.insertBefore(grade_type, document.getElementById("assignment_grading_type"));
+		document.getElementById("assignment_group_id").disabled = true;
+		document.getElementById("assignment_peer_reviews").disabled = true;
+		document.getElementById("assignment_manual_peer_reviews").disabled = true;
+		document.getElementById("assignment_automatic_peer_reviews").disabled = true;
+		document.getElementById("assignment_peer_review_count").disabled = true;
+		document.getElementById("assignment_peer_reviews_assign_at").disabled = true;
+	}, 1000);
+}
+
+function disable_quiz_settings(){
+	if(document.getElementById("quiz_assignment_id") == null){
+		return;
+	}
+	document.getElementById("quiz_assignment_id").disabled = true;
+	document.getElementById("quiz_assignment_group_id").disabled = true;
+	document.getElementById("quiz_shuffle_answers").disabled = true;
+	document.getElementById("time_limit_option").disabled = true;
+	document.getElementById("multiple_attempts_option").disabled = true;
+	document.getElementById("never_hide_results").disabled = true;
+	document.getElementById("quiz_one_time_results").disabled = true;
+	document.getElementById("quiz_show_correct_answers").disabled = true;
+	document.getElementById("quiz_one_question_at_a_time").disabled = true;
+	document.getElementById("quiz_cant_go_back").disabled = true;
+	document.getElementById("enable_quiz_access_code").disabled = true;
+	document.getElementById("quiz_access_code").disabled = true;
+	document.getElementById("enable_quiz_ip_filter").disabled = true;
+	document.getElementById("quiz_ip_filter").disabled = true;
+	document.getElementById("quiz_show_correct_answers_at").disabled = true;
+	document.getElementById("quiz_hide_correct_answers_at").disabled = true;
+	document.getElementById("quiz_points_possible").disabled = true;
+	document.getElementById("quiz_anonymous_submissions").disabled = true;
+	$('.add_question.question_editing').hide();
+	$('.float_value').hide();
+}
+
+function disable_add_assignment(){
+	if(document.querySelector('[aria-label="Add Assignment"]') == null){
+		return;
+	}
+	//document.querySelector('[aria-label="Add Assignment"]').style.visibility = "hidden";
+	var checkExist = setInterval(function() {
+			if ($(".btn.add_assignment").length) {
+				$( ".btn.add_assignment" ).each(function(index){ $(this).hide()});
+			}
+		}, 100);
+}
+
+function disable_add_quiz(){
+	if(document.querySelector('[aria-label="Add Quiz"]') == null){
+		return;
+	}
+	document.querySelector('[aria-label="Add Quiz"]').style.visibility = "hidden";
+}
+
+function disable_module_add_new(){
+	if(document.querySelector('[aria-label=\'Select the assignment you want to associate, or add an assignment by selecting "New Assignment".\']') == null){
+		return;
+	}
+	remove_option(document.querySelector('[aria-label=\'Select the assignment you want to associate, or add an assignment by selecting "New Assignment".\']'), 'new');
+	remove_option(document.querySelector('[aria-label=\'Select the quiz you want to associate, or add a new one by selecting "New Quiz".\']'), 'new');
+	//remove_option(document.getElementById("add_module_item_select", 'context_external_tool'));
+}
+
+function remove_option(element, value){
+	var opts = element.options;
+	for(var opt, j = 0; opt = opts[j]; j++) {
+		if(opt.value = value){
+			element.remove(opt);
+			return;
+		}
+	}
+}
+
+function disable_delete_assignment(){
+	var elements = document.getElementsByClassName("delete_assignment icon-trash ui-corner-all");
+	for(i = 0; i < elements.length; i++){
+		hide_element(elements[i]);
+	}
+}
+
+function hide_element(element){
+	element.style.visibility = "hidden";
+}

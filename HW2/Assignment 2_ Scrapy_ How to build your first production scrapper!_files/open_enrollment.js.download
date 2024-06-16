@@ -1,0 +1,18 @@
+var head= document.getElementsByTagName('head')[0];
+   var script= document.createElement('script');
+   script.type= 'text/javascript';
+   script.src= 'https://ucde-kylo.s3.amazonaws.com/scripts/field_lockdown.js';
+   head.appendChild(script);
+   
+hideTitle();
+
+function hideTitle(){
+	if($('.show-content').length > 0 || $('.user_content').length > 0 ){
+		if($('.cpe-container').length > 0){
+			$('h1.page-title').addClass('screenreader-only');
+			$('h1.ic-Action-header__Heading').addClass('screenreader-only');
+		}
+	}else{
+		setTimeout(hideTitle, 1);
+	}
+}

@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<!-- saved from url=(0082)https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179 -->
+<html dir="ltr" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#002855">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="apple-itunes-app" content="app-id=480883488">
+<link rel="manifest" href="https://cpeonline.ucdavis.edu/web-app-manifest/manifest.json">
+  <meta name="sentry-trace" content="00d9f3c223b3446eb5bbd5337e0041e9-fa8fc06ddbe2449a-0">
+  <title>Assignment 2: Scrapy: How to build your first production scrapper!</title>
+
+  <link rel="preload" href="https://du11hjcvx0uqb.cloudfront.net/dist/fonts/lato/extended/Lato-Regular-bd03a2cc27.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://du11hjcvx0uqb.cloudfront.net/dist/fonts/lato/extended/Lato-Bold-cccb897485.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="https://du11hjcvx0uqb.cloudfront.net/dist/fonts/lato/extended/Lato-Italic-4eb103b4d1.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="stylesheet" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/fonts-6ee09b0b2f.css" media="screen">
+  <link rel="stylesheet" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/variables-7dd4b80918af0e0218ec0229e4bd5873.css" media="all">
+  <link rel="stylesheet" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/common-37b019788b.css" media="all">
+  <link rel="stylesheet" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/assignments-7be7e63d80.css" media="screen">
+  <link rel="stylesheet" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/tinymce-59c32fac15.css" media="screen">
+  <link rel="stylesheet" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/learning_outcomes-7d358826b6.css" media="screen">
+  <link rel="apple-touch-icon" href="https://du11hjcvx0uqb.cloudfront.net/dist/images/apple-touch-icon-585e5d997d.png">
+  <link rel="icon" type="image/x-icon" href="https://du11hjcvx0uqb.cloudfront.net/dist/images/favicon-e10d657a73.ico">
+
+  <link rel="stylesheet" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/style.css" media="all">
+<link rel="stylesheet" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/style(1).css" media="all">
+  
+  <script type="text/javascript" async="" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/heap-3001039959.js.download"></script><script>if (navigator.userAgent.match(/(MSIE|Trident\/)/)) location.replace('/ie-is-not-supported.html')</script>
+  <script>
+    INST = {"environment":"production","allowMediaComments":true,"kalturaSettings":{"domain":"nv.instructuremedia.com","resource_domain":"nv.instructuremedia.com","rtmp_domain":"iad.rtmp.instructuremedia.com","partner_id":"9","subpartner_id":"0","player_ui_conf":"0","kcw_ui_conf":"0","upload_ui_conf":"0","max_file_size_bytes":534773760,"do_analytics":false,"hide_rte_button":false,"js_uploader":true},"logPageViews":true,"editorButtons":[{"name":"Commons Favorites","id":1,"favorite":false,"url":"https://lor.instructure.com/api/lti/favorite-resources","icon_url":"https://lor.instructure.com/img/icon_commons.png","canvas_icon_class":null,"width":800,"height":400,"use_tray":true,"always_on":false,"description":"\u003cp\u003eFind and share course content\u003c/p\u003e\n"},{"name":"PlayPosit","id":288,"favorite":true,"url":"https://www.playposit.com/LTI/launch","icon_url":"https://cdn.playposit.com/images/favicon.ico","canvas_icon_class":null,"width":900,"height":675,"use_tray":false,"always_on":false,"description":"\u003cp\u003ePlayPosit is interactive video engagement.\u003c/p\u003e\n"}]};
+    ENV = {"ASSET_HOST":"https://du11hjcvx0uqb.cloudfront.net","active_brand_config_json_url":"https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/34b08e3ea40740a8fdafe3c1c611c9b4/variables-7dd4b80918af0e0218ec0229e4bd5873.json","active_brand_config":{"md5":"34b08e3ea40740a8fdafe3c1c611c9b4","variables":{},"share":false,"name":null,"created_at":"2023-09-13T11:24:55-07:00","js_overrides":"https://instructure-uploads.s3.amazonaws.com/account_90380000000000001/attachments/190075/open_enrollment.js","css_overrides":"https://instructure-uploads.s3.amazonaws.com/account_90380000000000001/attachments/190193/style.css","mobile_js_overrides":"","mobile_css_overrides":"https://instructure-uploads.s3.amazonaws.com/account_90380000000000001/attachments/190194/style_mobile.css","parent_md5":"61b0aff88700731c6c18a9a5a2c29f6e"},"confetti_branding_enabled":false,"url_to_what_gets_loaded_inside_the_tinymce_editor_css":["https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/34b08e3ea40740a8fdafe3c1c611c9b4/variables-7dd4b80918af0e0218ec0229e4bd5873.css","https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/new_styles_normal_contrast/bundles/what_gets_loaded_inside_the_tinymce_editor-a64c7fe33c.css","https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/no_variables/bundles/fonts-6ee09b0b2f.css"],"url_for_high_contrast_tinymce_editor_css":["https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/default/variables-high_contrast-7dd4b80918af0e0218ec0229e4bd5873.css","https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/new_styles_high_contrast/bundles/what_gets_loaded_inside_the_tinymce_editor-fa0672d544.css","https://du11hjcvx0uqb.cloudfront.net/dist/brandable_css/no_variables/bundles/fonts-6ee09b0b2f.css"],"current_user_id":"66564","current_user_global_id":"90380000000066564","current_user_heap_id":"uu-2-c6e30d678945e3fbd04aff776646939822377e8921296228b9a9c2570016c95e-w4BmWaV942WbKEw0cQPqXCFFF8ot2PIXXMQ9IY6a","current_user_roles":["user","student"],"current_user_is_student":true,"current_user_types":[],"current_user_disabled_inbox":false,"current_user_visited_tabs":null,"discussions_reporting":false,"files_domain":"cluster56.canvas-user-content.com","group_information":null,"DOMAIN_ROOT_ACCOUNT_ID":"90380000000000001","DOMAIN_ROOT_ACCOUNT_UUID":"w4BmWaV942WbKEw0cQPqXCFFF8ot2PIXXMQ9IY6a","k12":false,"help_link_name":"Help","help_link_icon":"help","use_high_contrast":false,"auto_show_cc":false,"disable_celebrations":false,"disable_keyboard_shortcuts":false,"LTI_LAUNCH_FRAME_ALLOWANCES":["geolocation *","microphone *","camera *","midi *","encrypted-media *","autoplay *","clipboard-write *","display-capture *"],"DEEP_LINKING_POST_MESSAGE_ORIGIN":"https://cpeonline.ucdavis.edu","comment_library_suggestions_enabled":false,"SETTINGS":{"open_registration":true,"collapse_global_nav":false,"release_notes_badge_disabled":false,"filter_speed_grader_by_student_group":false},"RAILS_ENVIRONMENT":"Production","IN_PACED_COURSE":false,"SENTRY_FRONTEND":{"dsn":"https://355a1d96717e4038ac25aa852fa79a8f@relay-iad.sentry.insops.net/388","org_slug":"instructure","base_url":"https://sentry.insops.net","normalized_route":"/courses/{course_id}/assignments/{id}","errors_sample_rate":"0.0005","traces_sample_rate":"0.0005","url_deny_pattern":"instructure-uploads.*amazonaws.com","revision":"canvas-lms@20240508.263"},"DATA_COLLECTION_ENDPOINT":"https://canvas-frontend-data-iad-prod.inscloudgate.net/submit","DOMAIN_ROOT_ACCOUNT_SFID":"001A000001KREOKIA5","DIRECT_SHARE_ENABLED":false,"CAN_VIEW_CONTENT_SHARES":false,"FEATURES":{"featured_help_links":true,"account_level_blackout_dates":false,"render_both_to_do_lists":false,"course_paces_redesign":true,"course_paces_for_students":true,"explicit_latex_typesetting":false,"media_links_use_attachment_id":true,"permanent_page_links":true,"differentiated_modules":false,"enhanced_course_creation_account_fetching":false,"instui_for_import_page":false,"enhanced_rubrics":false,"multiselect_gradebook_filters":true,"assignment_edit_placement_not_on_announcements":false,"platform_service_speedgrader":false,"instui_header":false,"rce_find_replace":true,"product_tours":false,"usage_rights_discussion_topics":true,"granular_permissions_manage_users":true,"create_course_subaccount_picker":true,"lti_deep_linking_module_index_menu_modal":true,"lti_dynamic_registration":true,"lti_multiple_assignment_deep_linking":true,"lti_overwrite_user_url_input_select_content_dialog":true,"buttons_and_icons_root_account":false,"extended_submission_state":false,"scheduled_page_publication":true,"send_usage_metrics":true,"rce_transform_loaded_content":false,"lti_assignment_page_line_items":true,"mobile_offline_mode":false,"react_discussions_post":false,"instui_nav":false,"enhanced_developer_keys_tables":true,"lti_registrations_discover_page":false,"embedded_release_notes":true,"canvas_k6_theme":false,"new_math_equation_handling":true},"current_user":{"id":"66564","anonymous_id":"1fd0","display_name":"Riley","avatar_image_url":"https://cpeonline.ucdavis.edu/images/thumbnails/604264/LrK9BKIASWoayPZUQZfgf8RC8m5JBCrbmsunkJnt","html_url":"https://cpeonline.ucdavis.edu/about/66564","pronouns":null,"avatar_is_fallback":false},"current_user_is_admin":false,"page_view_update_url":"/page_views/06c1d836-c556-4dda-93b1-ff1b8c24efb2?page_view_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpIjoiMDZjMWQ4MzYtYzU1Ni00ZGRhLTkzYjEtZmYxYjhjMjRlZmIyIiwidSI6OTAzODAwMDAwMDAwNjY1NjQsImMiOiIyMDI0LTA1LTIxVDAxOjA2OjIyLjI4WiJ9.SYT9-MfwtFZSz8yJjvrGh7OJTrWmq8icpPUy7ku6Dww","context_asset_string":"course_6271","ping_url":"https://cpeonline.ucdavis.edu/api/v1/courses/6271/ping","TIMEZONE":"America/Los_Angeles","CONTEXT_TIMEZONE":"America/Los_Angeles","LOCALES":["en"],"BIGEASY_LOCALE":"en_US","FULLCALENDAR_LOCALE":"en","MOMENT_LOCALE":"en","rce_auto_save_max_age_ms":86400000,"K5_USER":false,"USE_CLASSIC_FONT":false,"K5_HOMEROOM_COURSE":false,"K5_SUBJECT_COURSE":false,"LOCALE_TRANSLATION_FILE":"/dist/javascripts/translations/en-12343ce012.json","ACCOUNT_ID":"334","user_cache_key":"SzdWaElmWjlPQkFxRFg2ZFNSNFVNa2QzcGlVbHhydnEyR3BXTzduM3Z5Zlc9\nO1twLTA/OntQXz1IVXBncmFxZTtuamFsa2hwdm9pdWxraW1tYXFld2c=\n","ASSIGNMENT_POINTS_POSSIBLE":null,"media_comment_asset_string":"user_66564","COURSE_ID":"6271","ROOT_OUTCOME_GROUP":{"id":"4166","title":"Data Structures, Data Mining with Python (234PYT304)","vendor_guid":null,"url":"/api/v1/courses/6271/outcome_groups/4166","subgroups_url":"/api/v1/courses/6271/outcome_groups/4166/subgroups","outcomes_url":"/api/v1/courses/6271/outcome_groups/4166/outcomes","can_edit":false,"import_url":"/api/v1/courses/6271/outcome_groups/4166/import","context_id":"6271","context_type":"Course","description":null},"SUBMISSION_ID":"1858156","FIRST_ANNOTATION_SUBMISSION":false,"RICH_CONTENT_APP_HOST":"rich-content-iad.inscloudgate.net","JWT":"ZXlKaGJHY2lPaUprYVhJaUxDSmxibU1pT2lKQk1qVTJSME5OSWl3aWNtVm5hVzl1SWpvaWRYTXRaV0Z6ZEMweElpd2laVzUyYVhKdmJtMWxiblFpT2lKUWNtOWtkV04wYVc5dUluMC4uV2ExS3ZmaEgxNjlrMnRYay4wWWVtRi1uZFlUUGR2bkpIUGhnMGZZblIySGNJeE1MX2pRSDZkaGIzdjBQOXItN1N6NkNMOWRnMHJrOHFXYktBTFVSWW5lYU9OTDNRQy13aE5jeF8tZ2tpaVlvZHZfSUZHZXRQdUUzWWtwaXBQdDFtdEhMVkl2c2Vnb0xNamtmamRJVWhwUC1YbVh4TVhGbUpwLXhYSERQbURybW8wNkJOUGFldzFFMS1QMUNmZGJqX1dzVzhtNmtiNWZwTXk1cDV1ZE53eWdGQWQ1ZkRhZjlfWHhOblpMNlpRQXRMdzcxSzRydkpxeXU2c1Voa1NtOU9kYWNESl9NcGUxeXA1MUxadkdRYXAxSHhLelF2WFM4bkNHbEZpeGtxUGg0VFhnUF9zWHRnaTBSMm1sYnBYTVZ6cGxzV1o0R3hObEhMNU5BamV5RmhUOV9vRjh0WjhUcWR1V3diTkprOEt4MS10OFhFQndMejdQdXJ6bGpxcHItTk9ScE9pQUtGZTNzaV81QWV3STVMd24tV3FHc0VVNE9BVENXZFlXZnp3MTBtclhCLWNBeDR4dEQzeGFaR1VMbVVPSjV3ZXFqTHhnYThvdjl6YlB4VVBEYkw0RUVaODBlQ2pJRXphcURNZlZPNS1yTGhhdE1EbnNjREhFOFl5dDRUU3lvS0x0cGpJWGd2bFZNcVUxd0ZwLWpfZllNTUNsUk1KUDRFWmUxODVTRUlQYThWZ1lxZ3Y2T0ZSWlNvby1lM2pxTG9pd1JkdUNwaVNQUkpWWGs0THVDUFpfNkp2ZU1KWXR1UzNRWXg0M25zazM2ZktzT1FFU1FjUHpaVllxSU81VmNjRTI3MTJLMXNZQWF2SWw4cnl3V3M2aUxRTWJiWHBhdlRaV2stSUxkWjhfOGMwWmlSam41SFpoOF9Icl9tdFY2SUMtVTV6NTBqaXRJTjAwdk1HcTZldFozWXpqUWpGWWV4WFV4WFZTN0Fzb0tiWkVJRkthdkwzSmRmcnBQT21tWTBVMnlZd0hqNVU4eVJNb0lBU0gxaEdhS0x5WElRMzlxNTJ0eG1KTmFWb3FvYjRzT0c4N0s1a0EuRXQxdWtTaHY0b1VqTzkyMkFnT1NMdw==","RICH_CONTENT_CAN_UPLOAD_FILES":false,"RICH_CONTENT_CAN_EDIT_FILES":false,"RICH_CONTENT_FILES_TAB_DISABLED":true,"RICH_CONTENT_INST_RECORD_TAB_DISABLED":false,"ASSIGNMENT_ID":"88964","PREREQS":{},"EULA_URL":null,"EXTERNAL_TOOLS":[],"PERMISSIONS":{"context":{"read_as_admin":false,"manage_assignments":false,"manage_assignments_edit":false},"assignment":{"update":false,"submit":true},"can_manage_groups":true},"SIMILARITY_PLEDGE":null,"CONFETTI_ENABLED":true,"EMOJIS_ENABLED":true,"EMOJI_DENY_LIST":"","USER_ASSET_STRING":"user_66564","OUTCOMES_NEW_DECAYING_AVERAGE_CALCULATION":true,"SUBMIT_ASSIGNMENT":{"ALLOWED_EXTENSIONS":[],"ID":"88964","GROUP_ID_FOR_USER":null},"badge_counts":{"submissions":2},"notices":[],"active_context_tab":"assignments"};
+    BRANDABLE_CSS_HANDLEBARS_INDEX = [["new_styles_normal_contrast","new_styles_high_contrast","new_styles_normal_contrast_rtl","new_styles_high_contrast_rtl"],{"10":["8300658022",0,"250b5824c2",2],"15":["fc26aa5fd4",0,"f904416063",2],"19":["df5777ed9c"],"61":["f3934dab06","f405852bb2","ee5810890b","3fd9943b9a"],"67":["8b57f54e71",0,"43833dde85",2],"71":["35b89b103a","4304be7d41","58dbfc2651","2932678b1c"],"06":["cb9f63cba6",0,"2be010fc14",2],"f0":["7c947dce20",0,0,0],"c8":["12d5e4d1e8","9f7b02d283","4ebd280f3e","b547456f4c"],"1e":["02e336724a","d7bb142b0a","d7ac7fdfb8","c03b9b261e"],"b3":["8ebc71ebc3","cf8efa05c8","4efdc93a21","fd6d3a9780"],"0c":["c26e82abac",0,"b71e9cbd6d",2],"da":["efb9fe6d7c","edbd1b5e83","a6dc56afb7","dfb2d13098"],"1d":["a3bfcb7961",0,"90682b3bbe",2],"08":["64bff5a97d"],"e2":["11429f119a"],"9f":["35936a18c3",0,0,0],"2b":["abf63f48ef","bf8e135ffe","378e0c136b","9833e305e6"],"2c":["6d919206cd",0,0,0],"c2":["6f2721ae01"],"9c":["ecafc938e4",0,"59e7c22304",2],"c5":["ebf0e1382f","7f587d9a8a","afbdabf23d","0d398196a8"],"f2":["51574f9b13"]}]
+    REMOTES = {};
+  </script>
+  <script src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/variables-7dd4b80918af0e0218ec0229e4bd5873.js.download" defer="defer"></script>
+  <script src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/Los_Angeles-6699c54112.js.download" defer="defer"></script>
+  <script src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/Los_Angeles-6699c54112.js.download" defer="defer"></script>
+  <script src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/en_US-80a0ce259b.js.download" defer="defer"></script>
+  <script src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/react-entry-0b1e31aa81d595c6.js.download" crossorigin="anonymous" defer="defer"></script>
+  <script src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/main-entry-55213ffc7b4b6ef2.js.download" crossorigin="anonymous" defer="defer"></script>
+<script>
+//<![CDATA[
+(window.bundles || (window.bundles = [])).push('assignment_show');
+(window.bundles || (window.bundles = [])).push('submit_assignment');
+(window.bundles || (window.bundles = [])).push('edit_rubric');
+(window.bundles || (window.bundles = [])).push('navigation_header');
+//]]>
+</script>
+  
+  <script type="text/javascript">
+    window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a);for(var n=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],o=0;o<p.length;o++)heap[p[o]]=n(p[o])};
+    heap.load("3001039959");
+    heap.clearEventProperties();
+    heap.addEventProperties({'Base.appName': 'Canvas'});
+    setTimeout(() => {
+      if (ENV.current_user_heap_id && ENV.current_user_heap_id !== heap.identity) {
+        heap.identify(ENV.current_user_heap_id);
+      }
+      props = {}
+      if (ENV.current_user_roles) {
+        props['role'] = ENV.current_user_roles[ENV.current_user_roles.length - 1]
+      }
+      if (ENV.DOMAIN_ROOT_ACCOUNT_UUID) {
+        props['Canvas.accountId'] = ENV.DOMAIN_ROOT_ACCOUNT_UUID
+      }
+      if (ENV.DOMAIN_ROOT_ACCOUNT_SFID) {
+        props['Canvas.salesforceAccountId'] = ENV.DOMAIN_ROOT_ACCOUNT_SFID
+      }
+      if (Object.keys(props).length > 0) {
+        heap.addUserProperties(props);
+      }
+    }, 1000);
+  </script>
+  
+<style type="text/css"></style><script type="text/javascript" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/jquery-3.1.1.min.js.download"></script><script type="text/javascript" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/jquery-ui.min.js.download"></script><script type="text/javascript" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/canvasGlobal.js.download"></script><script type="text/javascript" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/grade_export.js.download"></script><script type="text/javascript" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/canvas_custom.js.download"></script><script type="text/javascript" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/field_lockdown.js.download"></script><link data-webpack="webpack:chunk-81253" rel="stylesheet" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/81253-chunk-89af543101786c33.css"><style data-emotion="css" data-s=""></style><link rel="stylesheet" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/PaginatedView-6d919206cd.css" data-loaded-by-brandablecss="true"><link rel="stylesheet" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/TreeBrowser-ebf0e1382f.css" data-loaded-by-brandablecss="true"><link rel="stylesheet" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/MoveOutcomeDialog-35936a18c3.css" data-loaded-by-brandablecss="true"><link rel="stylesheet" type="text/css" href="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/canvas.8617bdb9cecd515278bfe72fc951f587.css"></head>
+
+<body class="with-left-side course-menu-expanded with-right-side assignments primary-nav-expanded context-course_6271 responsive_student_grades_page webkit chrome no-touch ally-tooltips-enabled">
+
+<noscript>
+  <div role="alert" class="ic-flash-static ic-flash-error">
+    <div class="ic-flash__icon" aria-hidden="true">
+      <i class="icon-warning"></i>
+    </div>
+    <h1>You need to have JavaScript enabled in order to access this site.</h1>
+  </div>
+</noscript>
+
+
+
+
+<div id="flash_message_holder"></div>
+<div id="flash_screenreader_holder" role="alert" aria-live="assertive" aria-relevant="additions" class="screenreader-only" aria-atomic="true"></div>
+
+<div id="application" class="ic-app">
+  
+
+
+
+<header id="mobile-header" class="no-print">
+  <button type="button" class="Button Button--icon-action-rev Button--large mobile-header-hamburger">
+    <i class="icon-solid icon-hamburger"></i>
+    <span id="mobileHeaderInboxUnreadBadge" class="menu-item__badge" style="min-width: 0; top: 12px; height: 12px; right: 6px; display:none;"></span>
+    <span class="screenreader-only">Dashboard</span>
+  </button>
+  <div class="mobile-header-space"></div>
+    <a class="mobile-header-title expandable" href="https://cpeonline.ucdavis.edu/courses/6271" role="button" aria-controls="mobileContextNavContainer">
+      <div>234PYT304</div>
+        <div>Assignment 2: Scrapy: How to build your first production scrapper!</div>
+    </a>
+    <div class="mobile-header-space"></div>
+    <button type="button" class="Button Button--icon-action-rev Button--large mobile-header-arrow" aria-label="Navigation Menu">
+      <i class="icon-arrow-open-down" id="mobileHeaderArrowIcon"></i>
+    </button>
+</header>
+<nav id="mobileContextNavContainer" aria-expanded="false"></nav>
+
+<header id="header" class="ic-app-header no-print ">
+  <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#content" id="skip_navigation_link">Skip To Content</a>
+  <div role="region" class="ic-app-header__main-navigation" aria-label="Global Navigation">
+      <div class="ic-app-header__logomark-container">
+        <a href="https://cpeonline.ucdavis.edu/" class="ic-app-header__logomark">
+          <span class="screenreader-only">Dashboard</span>
+        </a>
+      </div>
+    <ul id="menu" class="ic-app-header__menu-list">
+        <li class="menu-item ic-app-header__menu-list-item ">
+          <a id="global_nav_profile_link" role="button" href="https://cpeonline.ucdavis.edu/profile/settings" class="ic-app-header__menu-list-link">
+            <div class="menu-item-icon-container">
+              <div aria-hidden="true" class="fs-exclude ic-avatar ">
+                <img src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/LrK9BKIASWoayPZUQZfgf8RC8m5JBCrbmsunkJnt" alt="Riley">
+              </div>
+              <span class="menu-item__badge"></span>
+            </div>
+            <div class="menu-item__text">
+              Account
+            </div>
+          </a>
+        </li>
+      <li class="ic-app-header__menu-list-item ">
+        <a id="global_nav_dashboard_link" href="https://cpeonline.ucdavis.edu/" class="ic-app-header__menu-list-link">
+          <div class="menu-item-icon-container" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--dashboard" version="1.1" x="0" y="0" viewBox="0 0 280 200" enable-background="new 0 0 280 200" xml:space="preserve"><path d="M273.09,180.75H197.47V164.47h62.62A122.16,122.16,0,1,0,17.85,142a124,124,0,0,0,2,22.51H90.18v16.29H6.89l-1.5-6.22A138.51,138.51,0,0,1,1.57,142C1.57,65.64,63.67,3.53,140,3.53S278.43,65.64,278.43,142a137.67,137.67,0,0,1-3.84,32.57ZM66.49,87.63,50.24,71.38,61.75,59.86,78,76.12Zm147,0L202,76.12l16.25-16.25,11.51,11.51ZM131.85,53.82v-23h16.29v23Zm15.63,142.3a31.71,31.71,0,0,1-28-16.81c-6.4-12.08-15.73-72.29-17.54-84.25a8.15,8.15,0,0,1,13.58-7.2c8.88,8.21,53.48,49.72,59.88,61.81a31.61,31.61,0,0,1-27.9,46.45ZM121.81,116.2c4.17,24.56,9.23,50.21,12,55.49A15.35,15.35,0,1,0,161,157.3C158.18,152,139.79,133.44,121.81,116.2Z"></path></svg>
+
+          </div>
+          <div class="menu-item__text">
+            Dashboard
+          </div>
+        </a>
+      </li>
+        <li class="menu-item ic-app-header__menu-list-item ic-app-header__menu-list-item--active" aria-current="page">
+          <a id="global_nav_courses_link" role="button" href="https://cpeonline.ucdavis.edu/courses" class="ic-app-header__menu-list-link">
+            <div class="menu-item-icon-container" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--courses" version="1.1" x="0" y="0" viewBox="0 0 280 259" enable-background="new 0 0 280 259" xml:space="preserve"><path d="M73.31,198c-11.93,0-22.22,8-24,18.73a26.67,26.67,0,0,0-.3,3.63v.3a22,22,0,0,0,5.44,14.65,22.47,22.47,0,0,0,17.22,8H200V228.19h-134V213.08H200V198Zm21-105.74h90.64V62H94.3ZM79.19,107.34V46.92H200v60.42Zm7.55,30.21V122.45H192.49v15.11ZM71.65,16.71A22.72,22.72,0,0,0,49,39.36V190.88a41.12,41.12,0,0,1,24.32-8h157V16.71ZM33.88,39.36A37.78,37.78,0,0,1,71.65,1.6H245.36V198H215.15v45.32h22.66V258.4H71.65a37.85,37.85,0,0,1-37.76-37.76Z"></path></svg>
+
+            </div>
+            <div class="menu-item__text">
+              Courses
+            </div>
+          </a>
+        </li>
+      <li class="menu-item ic-app-header__menu-list-item ">
+        <a id="global_nav_calendar_link" href="https://cpeonline.ucdavis.edu/calendar" class="ic-app-header__menu-list-link">
+          <div class="menu-item-icon-container" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--calendar" version="1.1" x="0" y="0" viewBox="0 0 280 280" enable-background="new 0 0 280 280" xml:space="preserve"><path d="M197.07,213.38h16.31V197.07H197.07Zm-16.31,16.31V180.76h48.92v48.92Zm-48.92-16.31h16.31V197.07H131.85Zm-16.31,16.31V180.76h48.92v48.92ZM66.62,213.38H82.93V197.07H66.62ZM50.32,229.68V180.76H99.24v48.92Zm146.75-81.53h16.31V131.85H197.07Zm-16.31,16.31V115.54h48.92v48.92Zm-48.92-16.31h16.31V131.85H131.85Zm-16.31,16.31V115.54h48.92v48.92ZM66.62,148.15H82.93V131.85H66.62ZM50.32,164.46V115.54H99.24v48.92ZM34,262.29H246V82.93H34ZM246,66.62V42.16A8.17,8.17,0,0,0,237.84,34H213.38v8.15a8.15,8.15,0,1,1-16.31,0V34H82.93v8.15a8.15,8.15,0,0,1-16.31,0V34H42.16A8.17,8.17,0,0,0,34,42.16V66.62Zm-8.15-48.92a24.49,24.49,0,0,1,24.46,24.46V278.6H17.71V42.16A24.49,24.49,0,0,1,42.16,17.71H66.62V9.55a8.15,8.15,0,0,1,16.31,0v8.15H197.07V9.55a8.15,8.15,0,1,1,16.31,0v8.15Z"></path></svg>
+
+          </div>
+          <div class="menu-item__text">
+            Calendar
+          </div>
+        </a>
+      </li>
+      <li class="menu-item ic-app-header__menu-list-item ">
+      <!-- TODO: Add back global search when available -->
+        <a id="global_nav_conversations_link" href="https://cpeonline.ucdavis.edu/conversations" class="ic-app-header__menu-list-link">
+          <div class="menu-item-icon-container">
+            <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--inbox" version="1.1" x="0" y="0" viewBox="0 0 280 280" enable-background="new 0 0 280 280" xml:space="preserve"><path d="M91.72,120.75h96.56V104.65H91.72Zm0,48.28h80.47V152.94H91.72Zm0-96.56h80.47V56.37H91.72Zm160.94,34.88H228.52V10.78h-177v96.56H27.34A24.17,24.17,0,0,0,3.2,131.48V244.14a24.17,24.17,0,0,0,24.14,24.14H252.66a24.17,24.17,0,0,0,24.14-24.14V131.48A24.17,24.17,0,0,0,252.66,107.34Zm0,16.09a8.06,8.06,0,0,1,8,8v51.77l-32.19,19.31V123.44ZM67.58,203.91v-177H212.42v177ZM27.34,123.44H51.48v79.13L19.29,183.26V131.48A8.06,8.06,0,0,1,27.34,123.44ZM252.66,252.19H27.34a8.06,8.06,0,0,1-8-8V202l30,18H230.75l30-18v42.12A8.06,8.06,0,0,1,252.66,252.19Z"></path></svg>
+</span>
+            <span class="menu-item__badge"></span>
+          </div>
+          <div class="menu-item__text">
+            Inbox
+          </div>
+        </a>
+      </li>
+        <li class="menu-item ic-app-header__menu-list-item">
+          <a id="global_nav_history_link" role="button" href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="ic-app-header__menu-list-link">
+            <div class="menu-item-icon-container" aria-hidden="true">
+              <svg viewBox="0 0 1920 1920" class="ic-icon-svg menu-item__icon svg-icon-history" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path d="M960 112.941c-467.125 0-847.059 379.934-847.059 847.059 0 467.125 379.934 847.059 847.059 847.059 467.125 0 847.059-379.934 847.059-847.059 0-467.125-379.934-847.059-847.059-847.059M960 1920C430.645 1920 0 1489.355 0 960S430.645 0 960 0s960 430.645 960 960-430.645 960-960 960m417.905-575.955L903.552 988.28V395.34h112.941v536.47l429.177 321.77-67.765 90.465z" stroke="none" stroke-width="1" fill-rule="evenodd"></path>
+</svg>
+            </div>
+            <div class="menu-item__text">
+              History
+            </div>
+          </a>
+        </li>
+        
+
+      <li class="ic-app-header__menu-list-item">
+        <a id="global_nav_help_link" role="button" class="ic-app-header__menu-list-link" data-track-category="help system" data-track-label="help button" href="https://help.instructure.com/">
+          <div class="menu-item-icon-container" role="presentation">
+              <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg menu-item__icon svg-icon-help" version="1.1" x="0" y="0" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve" fill="currentColor"><path d="M100,127.88A11.15,11.15,0,1,0,111.16,139,11.16,11.16,0,0,0,100,127.88Zm8.82-88.08a33.19,33.19,0,0,1,23.5,23.5,33.54,33.54,0,0,1-24,41.23,3.4,3.4,0,0,0-2.74,3.15v9.06H94.42v-9.06a14.57,14.57,0,0,1,11.13-14,22.43,22.43,0,0,0,13.66-10.27,22.73,22.73,0,0,0,2.31-17.37A21.92,21.92,0,0,0,106,50.59a22.67,22.67,0,0,0-19.68,3.88,22.18,22.18,0,0,0-8.65,17.64H66.54a33.25,33.25,0,0,1,13-26.47A33.72,33.72,0,0,1,108.82,39.8ZM100,5.2A94.8,94.8,0,1,0,194.8,100,94.91,94.91,0,0,0,100,5.2m0,178.45A83.65,83.65,0,1,1,183.65,100,83.73,83.73,0,0,1,100,183.65" transform="translate(-5.2 -5.2)"></path></svg>
+
+            <span class="menu-item__badge"></span>
+          </div>
+          <div class="menu-item__text">
+            Help
+          </div>
+</a>      </li>
+    </ul>
+  </div>
+  <div class="ic-app-header__secondary-navigation">
+    <ul class="ic-app-header__menu-list">
+      <li class="menu-item ic-app-header__menu-list-item">
+        <a id="primaryNavToggle" role="button" href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="ic-app-header__menu-list-link ic-app-header__menu-list-link--nav-toggle" aria-label="Minimize global navigation" title="Minimize global navigation">
+          <div class="menu-item-icon-container" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" class="ic-icon-svg ic-icon-svg--navtoggle" version="1.1" x="0" y="0" width="40" height="32" viewBox="0 0 40 32" xml:space="preserve">
+  <path d="M39.5,30.28V2.48H37.18v27.8Zm-4.93-13.9L22.17,4,20.53,5.61l9.61,9.61H.5v2.31H30.14l-9.61,9.61,1.64,1.64Z"></path>
+</svg>
+
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div id="global_nav_tray_container"></div>
+  <div id="global_nav_tour"></div>
+</header>
+
+
+  <div id="instructure_ajax_error_box">
+    <div style="text-align: right; background-color: #fff;"><a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="close_instructure_ajax_error_box_link">Close</a></div>
+    <iframe id="instructure_ajax_error_result" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/saved_resource.html" style="border: 0;" title="Error"></iframe>
+  </div>
+
+  <div id="wrapper" class="ic-Layout-wrapper">
+        <div class="ic-app-nav-toggle-and-crumbs no-print">
+            <button type="button" id="courseMenuToggle" class="Button Button--link ic-app-course-nav-toggle" aria-live="polite" aria-label="Hide Courses Navigation Menu">
+              <i class="icon-hamburger" aria-hidden="true"></i>
+            </button>
+
+          <div class="ic-app-crumbs">
+              <nav id="breadcrumbs" role="navigation" aria-label="breadcrumbs"><ul><li class="home"><a href="https://cpeonline.ucdavis.edu/"><span class="ellipsible ellipsis" style="max-width: 180px;"><i class="icon-home" title="My Dashboard">
+  <span class="screenreader-only">My Dashboard</span>
+</i>
+</span></a></li><li><a href="https://cpeonline.ucdavis.edu/courses/6271"><span class="ellipsible ellipsis" style="max-width: 180px;">234PYT304</span></a></li><li><a href="https://cpeonline.ucdavis.edu/courses/6271/assignments"><span class="ellipsible ellipsis" style="max-width: 180px;">Assignments</span></a></li><li><a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964"><span class="ellipsible ellipsis" style="max-width: 180px;">Assignment 2: Scrapy: How to build your first production scrapper!</span></a></li></ul></nav>
+          </div>
+
+
+          <div class="right-of-crumbs">
+          </div>
+
+        </div>
+    <div id="main" class="ic-Layout-columns">
+        <div class="ic-Layout-watermark"></div>
+        <div id="left-side" class="ic-app-course-menu ic-sticky-on list-view" style="display: block">
+          <div id="sticky-container" class="ic-sticky-frame">
+              <span id="section-tabs-header-subtitle" class="ellipsis">234 - Spring 2024</span>
+            <nav role="navigation" aria-label="Courses Navigation Menu"><ul id="section-tabs"><li class="section"><a href="https://cpeonline.ucdavis.edu/courses/6271" class="home" tabindex="0">Home</a></li><li class="section"><a href="https://cpeonline.ucdavis.edu/courses/6271/announcements" class="announcements" tabindex="0">Announcements</a></li><li class="section"><a href="https://cpeonline.ucdavis.edu/courses/6271/modules" class="modules" tabindex="0">Modules</a></li><li class="section"><a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/syllabus" class="syllabus" tabindex="0">Syllabus</a></li><li class="section"><a href="https://cpeonline.ucdavis.edu/courses/6271/external_tools/324" class="context_external_tool_324" tabindex="0">Zoom</a></li><li class="section"><a href="https://cpeonline.ucdavis.edu/courses/6271/users" class="people" tabindex="0">People</a></li><li class="section"><a href="https://cpeonline.ucdavis.edu/courses/6271/external_tools/72" class="context_external_tool_72" tabindex="0">Chat</a></li><li class="section"><a href="https://cpeonline.ucdavis.edu/courses/6271/external_tools/1004" class="context_external_tool_1004" tabindex="0">Career Resources</a></li><li class="section"><a href="https://cpeonline.ucdavis.edu/courses/6271/external_tools/1085" class="context_external_tool_1085" tabindex="0">Course Evaluations</a></li></ul></nav>
+          </div>
+        </div>
+      <div id="not_right_side" class="ic-app-main-content">
+        <div id="content-wrapper" class="ic-Layout-contentWrapper">
+          
+          <div id="content" class="ic-Layout-contentMain" role="main">
+            
+<style>
+  #right-side-wrapper {
+    height: 100%;
+  }
+
+  .assignment_header {
+    border-bottom: 1px solid #a4a4a4;
+    overflow: hidden;
+  }
+
+  #assignment_head {
+    margin-top: 0;
+    font-weight: bold;
+  }
+
+  .lock_explanation {
+    text-align: left;
+    margin-top: 20px;
+  }
+</style>
+
+
+
+<div id="assignment_show" class="assignment content_underline_links" data-lti-page-content="true">
+    <!--Student View-->
+    <div class="assignment-title">
+      <div class="title-content">
+        <h1 class="title">
+          Assignment 2: Scrapy: How to build your first production scrapper!
+        <button aria-haspopup="dialog" class="ally-accessible-versions ally-add-tooltip" data-id="assignment:88964" data-ally-content-id="assignment:88964" data-ally-richcontent-eid="assignment:88964" aria-label="Alternative formats" title="Alternative formats">
+    <span class="ally-prominent-af-download-button"></span>
+</button></h1>
+      </div>
+      <div class="assignment-buttons">
+        
+
+        <button type="button" class="Button Button--primary submit_assignment_link ">Start Assignment</button>
+      </div>
+    </div>
+    
+<ul class="student-assignment-overview">
+  <li>
+    <span class="title">Due</span>
+    <span class="value">
+          <span class="date_text">
+                <span class="display_date">May 12</span> by 
+                <span class="display_time">11:59pm</span>
+          </span><!--
+        --></span>
+  </li>
+    <li>
+      <span class="title">Points</span>
+      <span class="value">25</span>
+    </li>
+    <li>
+      <span class="title">Submitting</span>
+      <span class="value">a file upload</span>
+    </li>
+  
+
+  <div class="clear"></div>
+</ul>
+
+  <div class="clear"></div>
+
+
+  <div class="clear"></div>
+
+
+
+  <div class="description user_content enhanced" data-resource-type="assignment.body" data-resource-id="88964"><h2>Scrapy Beginners Series Part 1: How To Build Your First Production Scraper</h2>
+<p>Whether you are a developer, data scientist or marketer, being able to develop web scrapers is a hugely valuable skill to have. And there is no better web scraping framework than<span>&nbsp;</span><strong>Python Scrapy</strong>.</p>
+<p>There are lots of articles online, showing you how to make your first basic Scrapy spider. However, there are very few that walk you through the full process of building a production ready Scrapy spider.</p>
+<p>To address this, we are doing a<span>&nbsp;</span><strong>5-Part Scrapy Beginner Guide Series</strong>, where we're going to build a Scrapy project end-to-end from building the scrapers to deploying on a server and run them every day.</p>
+<ul>
+<li>
+<p><strong>Part 1: Basic Scrapy Spider -</strong><span>&nbsp;</span>We will go over the basics of Scrapy, and build our first Scrapy spider. (This Tutorial)</p>
+</li>
+<li>
+<p><strong>Part 2: Cleaning Dirty Data &amp; Dealing With Edge Cases -</strong><span>&nbsp;</span>Web data can be messy, unstructured, and have lots of edge cases. In this tutorial we will make our spider robust to these edge cases, using Items, Itemloaders and Item Pipelines. (<a class="external" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide-cleaning-data" target="_blank"><span>Part 2</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a>)</p>
+</li>
+<li>
+<p><strong>Part 3: Storing Our Data -</strong><span>&nbsp;</span>There are many different ways we can store the data that we scrape from databases, CSV files to JSON format, and to S3 buckets. We will explore several different ways we can store the data and talk about their Pro's, Con's and in which situations you would use them. (<a class="external" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide-storing-data" target="_blank"><span>Part 3</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a>)</p>
+</li>
+<li>
+<p><strong>(Extra Credit) Part 4: User Agents &amp; Proxies -</strong><span>&nbsp;</span>Make our spider production ready by managing our user agents &amp; IPs so we don't get blocked. (<a class="external" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide-user-agents-proxies" target="_blank"><span>Part 4</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></p>
+</li>
+</ul>
+<p>For this beginner series, we're going to be using one of the simplest scraping architectures. A single spider, being given a start URL which will then crawl the site, parse and clean the data from the HTML responses, and store the data all in the same process.</p>
+<p>This architecture is suitable for the majority of hobby and small scraping projects, however, if you are scraping business critical data at larger scales then we would use different scraping architectures. We will cover these in other Scrapy series.</p>
+<p>The code for this project is available on<span>&nbsp;</span><a class="external" href="https://github.com/ScrapeOps/python-scrapy-playbook/tree/master/1_Beginner_Series" target="_blank"><span>Github here</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a>!</p>
+<hr>
+<h2 id="part-1-basic-scrapy-spider" class="anchor anchorWithStickyNavbar_mojV">Part 1: Basic Scrapy Spider<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#part-1-basic-scrapy-spider" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h2>
+<p>In this tutorial,<span>&nbsp;</span><strong>Part 1: Basic Scrapy Spider</strong><span>&nbsp;</span>we're going to cover:</p>
+<ul>
+<li><a class="external" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#what-is-scrapy" target="_blank"><span>What is Scrapy?</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></li>
+<li><a class="external" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-1---setup-your-python-environment" target="_blank"><span>How to Setup Our Python Environment</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></li>
+<li><a class="external" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-2---setup-our-scrapy-project" target="_blank"><span>How to Setup Our Scrapy Project</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></li>
+<li><a class="external" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-3--creating-our-spider" target="_blank"><span>Creating Our Scrapy Spider</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></li>
+<li><a class="external" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-5---scrapy-shell-finding-our-css-selectors" target="_blank"><span>Using Scrapy Shell To Find Our CSS Selectors</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></li>
+<li><a class="external" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-5---running-our-spider" target="_blank"><span>How to Run Our Scrapy Spider, Plus Output Data in CSV or JSON</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></li>
+<li><a class="external" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-6---navigating-to-the-next-page" target="_blank"><span>How to Navigate Through Pages</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></li>
+</ul>
+<p>For this series, we will be scraping the products from<span>&nbsp;</span><a class="external" href="https://www.chocolate.co.uk/collections/all" target="_blank"><span>Chocolate.co.uk</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a><span>&nbsp;</span>as it will be a good example of how to approach scraping a e-commerce store. Plus,<span>&nbsp;</span><strong>who doesn't like Chocolate!</strong></p>
+<p><img class="img_E7b_" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/tut1-site-a758cece70aff12378c2daa74528e2b1.png" alt="Chocolate shop" width="2872" height="1336"></p>
+<hr>
+<h2 id="what-is-scrapy" class="anchor anchorWithStickyNavbar_mojV">What Is Scrapy?<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#what-is-scrapy" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h2>
+<p>Developed by the co-founders of<span>&nbsp;</span><a class="external" href="https://www.zyte.com/?rfsn=6335521.8097b3" target="_blank"><span>Zyte</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a>, Pablo Hoffman and Shane Evans,<span>&nbsp;</span><a class="external" href="https://scrapy.org/" target="_blank"><span>Scrapy</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a><span>&nbsp;</span>is a Python framework specifically designed for web scraping.</p>
+<p>Using Scrapy you can easily build highly scalable scrapers that will retrieve a pages HTML, parse and process the data, and store it the file format and location of your choice.</p>
+<h3 id="why--when-should-you-use-scrapy" class="anchor anchorWithStickyNavbar_mojV">Why &amp; When Should You Use Scrapy?<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#why--when-should-you-use-scrapy" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h3>
+<p>Although, there are other Python libraries also used for web scraping:</p>
+<ul>
+<li>
+<p><a class="external" href="https://docs.python-requests.org/en/latest/" target="_blank"><span>Python Requests</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a>/<a class="external" href="https://beautiful-soup-4.readthedocs.io/en/latest/" target="_blank"><span>BeautifulSoup</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a>: Good for small scale web scraping where the data is returned in the HTML response. Would need to build you own spider management functionality to manage concurrency, retries, data cleaning, data storage.</p>
+</li>
+<li>
+<p><a class="external" href="https://github.com/psf/requests-html" target="_blank"><span>Python Request-HTML</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a>: Combining Python requests with a parsing library, Request-HTML is a middle-ground between the Python Requests/BeautifulSoup combo and Scrapy.</p>
+</li>
+<li>
+<p><a class="external" href="https://selenium-python.readthedocs.io/" target="_blank"><span>Python Selenium</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a>: Use if you are scraping a site if it only returns the target data after the Javascript has rendered, or you need to interact with page elements to get the data.</p>
+</li>
+</ul>
+<p><strong><a class="external" href="https://scrapy.org/" target="_blank"><span>Python Scrapy</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></strong><span>&nbsp;</span>has lots more functionality and is great for large scale scraping right out of the box:</p>
+<ul>
+<li>CSS Selector &amp; XPath Expressions Parsing</li>
+<li>Data formating (CSV, JSON, XML) and Storage (FTP, S3, local filesystem)</li>
+<li>Robust Encoding Support</li>
+<li>Concurrency Managment</li>
+<li>Automatic Retries</li>
+<li>Cookies and Session Handling</li>
+<li>Crawl Spiders &amp; In-Built Pagination Support</li>
+</ul>
+<p>You just need to customise it in your settings file or add in one of the many Scrapy extensions and middlewares that developers have open sourced.</p>
+<p>The learning curve is initially steeper than using the Python Requests/BeautifulSoup combo, however, it will save you a lot of time in the long run when deploying production scrapers and scraping at scale.</p>
+<hr>
+<h2 id="beginners-scrapy-tutorial" class="anchor anchorWithStickyNavbar_mojV">Beginners Scrapy Tutorial<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#beginners-scrapy-tutorial" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h2>
+<p>With the intro out of the way, let's start developing our Spider. First, things first we need to setup up our Python environment.</p>
+<h3 id="step-1---setup-your-python-environment" class="anchor anchorWithStickyNavbar_mojV">Step 1 - Setup your Python Environment<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-1---setup-your-python-environment" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h3>
+<p>To avoid version conflicts down the raod it is best practice to create a seperate virtual environment for each of your Python projects. This means that any packages you install for a project are kept seperate from other projects, so you don't inadverently end up breaking other projects.</p>
+<p>Depending on the operating system of your machine these commands will be slightly different.</p>
+<h4 id="macos-or-linux" class="anchor anchorWithStickyNavbar_mojV">MacOS or Linux<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#macos-or-linux" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h4>
+<p>Setup a virtual environment on MacOS or any Linux distro.</p>
+<p>First, we want to make sure we've the latest version of our packages installed.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">$ </span><span class="token function">sudo</span> <span class="token function">apt-get</span><span class="token plain"> update</span><br></span><span class="token-line"><span class="token plain">$ </span><span class="token function">apt</span> <span class="token function">install</span><span class="token plain"> tree</span><br></span></code></pre>
+</div>
+</div>
+<p>Then install<span>&nbsp;</span><code>python3-venv</code><span>&nbsp;</span>if you haven't done so already</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">$ </span><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span><span class="token plain"> -y python3-venv</span><br></span></code></pre>
+</div>
+</div>
+<p>Next, we will create our Python virtual environment.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">$ </span><span class="token builtin class-name">cd</span><span class="token plain"> /scrapy_tutorials</span><br></span><span class="token-line"><span class="token plain">$ python3 -m venv venv</span><br></span><span class="token-line"><span class="token plain">$ </span><span class="token builtin class-name">source</span><span class="token plain"> venv/bin/activate</span><br></span></code></pre>
+</div>
+</div>
+<p>Finally, we will install Scrapy in our virtual environment.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">$ </span><span class="token function">apt-get</span> <span class="token function">install</span><span class="token plain"> python3-pip</span><br></span><span class="token-line"><span class="token plain">$ </span><span class="token function">sudo</span><span class="token plain"> pip3 </span><span class="token function">install</span><span class="token plain"> scrapy</span><br></span></code></pre>
+</div>
+</div>
+<h4 id="windows" class="anchor anchorWithStickyNavbar_mojV">Windows<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#windows" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h4>
+<p>Setup a virtual environment on Windows.</p>
+<p>Install<span>&nbsp;</span><code>virtualenv</code><span>&nbsp;</span>in your Windows command shell, Powershell, or other terminal you are using.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">pip </span><span class="token function">install</span><span class="token plain"> virtualenv</span><br></span></code></pre>
+</div>
+</div>
+<p>Navigate to the folder you want to create the virtual environment, and start virtualenv.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token builtin class-name">cd</span><span class="token plain"> /scrapy_tutorials</span><br></span><span class="token-line"><span class="token plain">virtualenv venv</span><br></span></code></pre>
+</div>
+</div>
+<p>Activate the virtual environment.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token builtin class-name">source</span><span class="token plain"> venv</span><span class="token punctuation">\</span><span class="token plain">Scripts</span><span class="token punctuation">\</span><span class="token plain">activate</span><br></span></code></pre>
+</div>
+</div>
+<p>Finally, we will install Scrapy in our virtual environment.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">pip </span><span class="token function">install</span><span class="token plain"> scrapy</span><br></span></code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<h4 id="test-scrapy-is-installed" class="anchor anchorWithStickyNavbar_mojV">Test Scrapy Is Installed<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#test-scrapy-is-installed" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h4>
+<p>To make sure everything is working, if you type the command<span>&nbsp;</span><code>scrapy</code><span>&nbsp;</span>into your command line you should get an output like this:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">$ scrapy</span><br></span><span class="token-line"><br></span><span class="token-line"><span class="token plain">Usage:</span><br></span><span class="token-line"><span class="token plain">  scrapy </span><span class="token operator">&lt;</span><span class="token plain">command</span><span class="token operator">&gt;</span> <span class="token punctuation">[</span><span class="token plain">options</span><span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token plain">args</span><span class="token punctuation">]</span><br></span><span class="token-line"><br></span><span class="token-line"><span class="token plain">Available commands:</span><br></span><span class="token-line"><span class="token plain">  bench         Run quick benchmark </span><span class="token builtin class-name">test</span><br></span><span class="token-line"><span class="token plain">  check         Check spider contracts</span><br></span><span class="token-line"><span class="token plain">  commands</span><br></span><span class="token-line"><span class="token plain">  crawl         Run a spider</span><br></span><span class="token-line"><span class="token plain">  edit          Edit spider</span><br></span><span class="token-line"><span class="token plain">  fetch         Fetch a URL using the Scrapy downloader</span><br></span><span class="token-line"><span class="token plain">  genspider     Generate new spider using pre-defined templates</span><br></span><span class="token-line"><span class="token plain">  list          List available spiders</span><br></span><span class="token-line"><span class="token plain">  parse         Parse URL </span><span class="token punctuation">(</span><span class="token plain">using its spider</span><span class="token punctuation">)</span><span class="token plain"> and print the results</span><br></span><span class="token-line"><span class="token plain">  runspider     Run a self-contained spider</span><br></span><span class="token-line"><br></span></code></pre>
+</div>
+</div>
+<hr>
+<h3 id="step-2---setup-our-scrapy-project" class="anchor anchorWithStickyNavbar_mojV">Step 2 - Setup Our Scrapy Project<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-2---setup-our-scrapy-project" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h3>
+<p>Now that we have our environment setup, we can get onto the fun stuff.<span>&nbsp;</span><strong>Building our first Scrapy spider!</strong></p>
+<p>&nbsp;</p>
+<h4 id="creating-our-scrapy-project" class="anchor anchorWithStickyNavbar_mojV">Creating Our Scrapy Project<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#creating-our-scrapy-project" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h4>
+<p>The first thing we need to do is create our Scrapy project. This project will hold all the code for our scrapers.</p>
+<p>The command line synthax to do this is:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">scrapy startproject </span><span class="token operator">&lt;</span><span class="token plain">project_name</span><span class="token operator">&gt;</span><br></span></code></pre>
+</div>
+</div>
+<p>So in this case, as we're going to be scraping a chocolate website we will call our project<span>&nbsp;</span><code>chocolatescraper</code>. But you can use any project name you would like.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">scrapy startproject chocolatescraper</span><br></span></code></pre>
+</div>
+</div>
+<p>&nbsp;</p>
+<h4 id="understanding-scrapy-project-structure" class="anchor anchorWithStickyNavbar_mojV">Understanding Scrapy Project Structure<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#understanding-scrapy-project-structure" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h4>
+<p>To help us understand what we've just done, and how Scrapy structures it projects we're going to pause for a second.</p>
+<p>First, we're going to see what the<span>&nbsp;</span><code>scrapy startproject chocolatescraper</code><span>&nbsp;</span>just did. Enter the following commands into your command line:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">$ </span><span class="token builtin class-name">cd</span><span class="token plain"> /chocolatescraper</span><br></span><span class="token-line"><span class="token plain">$ tree</span><br></span></code></pre>
+</div>
+</div>
+<p>You should see something like this:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">├── scrapy.cfg</span><br></span><span class="token-line"><span class="token plain">└── chocolatescraper</span><br></span><span class="token-line"><span class="token plain">    ├── __init__.py</span><br></span><span class="token-line"><span class="token plain">    ├── items.py</span><br></span><span class="token-line"><span class="token plain">    ├── middlewares.py</span><br></span><span class="token-line"><span class="token plain">    ├── pipelines.py</span><br></span><span class="token-line"><span class="token plain">    ├── settings.py</span><br></span><span class="token-line"><span class="token plain">    └── spiders</span><br></span><span class="token-line"><span class="token plain">        └── __init__.py</span><br></span></code></pre>
+</div>
+</div>
+<p>When we ran the<span>&nbsp;</span><code>scrapy startproject chocolatescraper</code><span>&nbsp;</span>command, Scrapy automatically generated a template project for us to use.</p>
+<p>We won't be using most of these files in this beginners project, but we will give a quick explanation of each as each one has a special purpose:</p>
+<ul>
+<li><strong>settings.py</strong><span>&nbsp;</span>is where all your project settings are contained, like activating pipelines, middlewares etc. Here you can change the delays, concurrency, and lots more things.</li>
+<li><strong>items.py</strong><span>&nbsp;</span>is a model for the extracted data. You can define a custom model (like a ProductItem) that will inherit the Scrapy Item class and contain your scraped data.</li>
+<li><strong>pipelines.py</strong><span>&nbsp;</span>is where the item yielded by the spider gets passed, it’s mostly used to clean the text and connect to file outputs or databases (CSV, JSON SQL, etc).</li>
+<li><strong>middlewares.py</strong><span>&nbsp;</span>is useful when you want to modify how the request is made and scrapy handles the response.</li>
+<li><strong>scrapy.cfg</strong><span>&nbsp;</span>is a configuration file to change some deployment settings, etc.</li>
+</ul>
+<hr>
+<h3 id="step-3--creating-our-spider" class="anchor anchorWithStickyNavbar_mojV">Step 3- Creating Our Spider<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-3--creating-our-spider" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h3>
+<p>Okay, we’ve created the general project structure. Now, we’re going to create our spider that will do the scraping.</p>
+<p>Scrapy provides a number of different spider types, however, in this tutorial we will cover the most common one, the generic<span>&nbsp;</span><strong>Spider</strong>. Here are some of the most common ones:</p>
+<ul>
+<li><strong>Spider -</strong><span>&nbsp;</span>Takes a list of start_urls and scrapes each one with a<span>&nbsp;</span><code>parse</code><span>&nbsp;</span>method.</li>
+<li><strong>CrawlSpider -</strong><span>&nbsp;</span>Designed to crawl a full website by following any links it finds.</li>
+<li><strong>SitemapSpider -</strong><span>&nbsp;</span>Designed to extract URLs from a sitemap</li>
+</ul>
+<p>To create a new generic spider, simply run the<span>&nbsp;</span><strong>genspider</strong><span>&nbsp;</span>command:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token comment"># syntax is --&gt; scrapy genspider &lt;name_of_spider&gt; &lt;website&gt; </span><br></span><span class="token-line"><span class="token plain">$ scrapy genspider chocolatespider chocolate.co.uk</span><br></span></code></pre>
+</div>
+</div>
+<p>A new spider will now have been added to your<span>&nbsp;</span><code>spiders</code><span>&nbsp;</span>folder, and it should look like this:</p>
+<div class="language-python codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-python codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token keyword">import</span><span class="token plain"> scrapy</span><br></span><span class="token-line"><br></span><span class="token-line"><span class="token keyword">class</span> <span class="token class-name">ChocolatespiderSpider</span><span class="token punctuation">(</span><span class="token plain">scrapy</span><span class="token punctuation">.</span><span class="token plain">Spider</span><span class="token punctuation">)</span><span class="token punctuation">:</span><br></span><span class="token-line"><span class="token plain">    name </span><span class="token operator">=</span> <span class="token string">'chocolatespider'</span><br></span><span class="token-line"><span class="token plain">    allowed_domains </span><span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'chocolate.co.uk'</span><span class="token punctuation">]</span><br></span><span class="token-line"><span class="token plain">    start_urls </span><span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'http://chocolate.co.uk/'</span><span class="token punctuation">]</span><br></span><span class="token-line"><br></span><span class="token-line">    <span class="token keyword">def</span> <span class="token function">parse</span><span class="token punctuation">(</span><span class="token plain">self</span><span class="token punctuation">,</span><span class="token plain"> response</span><span class="token punctuation">)</span><span class="token punctuation">:</span><br></span><span class="token-line">        <span class="token keyword">pass</span><br></span><span class="token-line"><br></span></code></pre>
+</div>
+</div>
+<p>Here we see that the<span>&nbsp;</span><code>genspider</code><span>&nbsp;</span>command has created a template spider for us to use in the form of a<span>&nbsp;</span><code>Spider</code><span>&nbsp;</span>class. This spider class contains:</p>
+<ul>
+<li><strong>name</strong><span>&nbsp;</span>- a class attribute that gives a name to the spider. We will use this when running our spider later<span>&nbsp;</span><code>scrapy crawl &lt;spider_name&gt;</code>.</li>
+<li><strong>allowed_domains</strong><span>&nbsp;</span>- a class attribute that tells Scrapy that it should only ever scrape pages of the<span>&nbsp;</span><code>chocolate.co.uk</code><span>&nbsp;</span>domain. This prevents the spider going rouge and scraping lots of websites. This is optional.</li>
+<li><strong>start_urls</strong><span>&nbsp;</span>- a class attribute that tells Scrapy the first url it should scrape. We will be changing this in a bit.</li>
+<li><strong>parse</strong><span>&nbsp;</span>- the<span>&nbsp;</span><code>parse</code><span>&nbsp;</span>function is called after a response has been recieved from the target website.</li>
+</ul>
+<p>To start using this Spider we will have to do two things:</p>
+<ol>
+<li>Change the<span>&nbsp;</span><code>start_urls</code><span>&nbsp;</span>to the url we want to scrape<span>&nbsp;</span><a class="external" href="https://www.chocolate.co.uk/collections/all" target="_blank"><span>https://www.chocolate.co.uk/collections/all</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a>.</li>
+<li>Insert our parsing code into the<span>&nbsp;</span><code>parse</code><span>&nbsp;</span>function.</li>
+</ol>
+<hr>
+<h3 id="step-4---update-start-urls" class="anchor anchorWithStickyNavbar_mojV">Step 4 - Update Start Urls<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-4---update-start-urls" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h3>
+<p>This is pretty easy, we just need to replace the url in the<span>&nbsp;</span><code>start_urls</code><span>&nbsp;</span>array:</p>
+<div class="language-python codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-python codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token keyword">import</span><span class="token plain"> scrapy</span><br></span><span class="token-line"><br></span><span class="token-line"><span class="token keyword">class</span> <span class="token class-name">ChocolatespiderSpider</span><span class="token punctuation">(</span><span class="token plain">scrapy</span><span class="token punctuation">.</span><span class="token plain">Spider</span><span class="token punctuation">)</span><span class="token punctuation">:</span><br></span><span class="token-line"><span class="token plain">    name </span><span class="token operator">=</span> <span class="token string">'chocolatespider'</span><br></span><span class="token-line"><span class="token plain">    allowed_domains </span><span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'chocolate.co.uk'</span><span class="token punctuation">]</span><br></span><span class="token-line"><span class="token plain">    start_urls </span><span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'https://www.chocolate.co.uk/collections/all'</span><span class="token punctuation">]</span><br></span><span class="token-line"><br></span><span class="token-line">    <span class="token keyword">def</span> <span class="token function">parse</span><span class="token punctuation">(</span><span class="token plain">self</span><span class="token punctuation">,</span><span class="token plain"> response</span><span class="token punctuation">)</span><span class="token punctuation">:</span><br></span><span class="token-line">        <span class="token keyword">pass</span><br></span></code></pre>
+</div>
+</div>
+<p>Next, we need to create our CSS selectors to parse the data we want from the page. To do this, we will use Scrapy Shell.</p>
+<hr>
+<h3 id="step-5---scrapy-shell-finding-our-css-selectors" class="anchor anchorWithStickyNavbar_mojV">Step 5 - Scrapy Shell: Finding Our CSS Selectors<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-5---scrapy-shell-finding-our-css-selectors" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h3>
+<p>To extract data from a HTML page, we need to use<span>&nbsp;</span><a class="external" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#" target="_blank"><span>XPath</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a><span>&nbsp;</span>or<span>&nbsp;</span><a class="external" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#" target="_blank"><span>CSS selectors</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a><span>&nbsp;</span>to tell Scrapy where in the page is the data. XPath and CSS selectors are like little maps for Scrapy to navigate the DOM tree and find the location of the data we require.</p>
+<p>In this guide, we're going to use CSS selectors to parse the data from the page. And to help us create these CSS selectors we will use<span>&nbsp;</span><a class="external" href="https://docs.scrapy.org/en/latest/topics/shell.html" target="_blank"><span>Scrapy Shell</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a>.</p>
+<p>One of the great features of Scrapy is that it comes with a built-in shell that allows you to quickly test and debug your XPath &amp; CSS selectors. Instead of having to run your full scraper to see if your XPath or CSS selectors are correct, you can enter them directly into your terminal and see the result.</p>
+<p>To open Scrapy shell use this command:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">scrapy shell</span><br></span></code></pre>
+</div>
+</div>
+<p><strong>Note:</strong><span>&nbsp;</span>If you would like to use IPython as your Scrapy shell (much more powerful and provides smart auto-completion and colorized output), then make sure you have IPython installed:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">pip3 </span><span class="token function">install</span><span class="token plain"> ipython</span><br></span></code></pre>
+</div>
+</div>
+<p>And then edit your<span>&nbsp;</span><code>scrapy.cfg</code><span>&nbsp;</span>file like so:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token comment">## scrapy.cfg</span><br></span><span class="token-line"><span class="token punctuation">[</span><span class="token plain">settings</span><span class="token punctuation">]</span><br></span><span class="token-line"><span class="token plain">default </span><span class="token operator">=</span><span class="token plain"> chocolatescraper.settings</span><br></span><span class="token-line"><span class="token plain">shell </span><span class="token operator">=</span><span class="token plain"> ipython</span><br></span></code></pre>
+</div>
+</div>
+<p>With our Scrapy shell open, you should see something like this:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token punctuation">[</span><span class="token plain">s</span><span class="token punctuation">]</span><span class="token plain"> Available Scrapy objects:</span><br></span><span class="token-line"><span class="token punctuation">[</span><span class="token plain">s</span><span class="token punctuation">]</span><span class="token plain">   scrapy     scrapy module </span><span class="token punctuation">(</span><span class="token plain">contains scrapy.Request, scrapy.Selector, etc</span><span class="token punctuation">)</span><br></span><span class="token-line"><span class="token punctuation">[</span><span class="token plain">s</span><span class="token punctuation">]</span><span class="token plain">   crawler    </span><span class="token operator">&lt;</span><span class="token plain">scrapy.crawler.Crawler object at 0x0000025111C4794</span><span class="token operator file-descriptor important">8</span><span class="token operator">&gt;</span><br></span><span class="token-line"><span class="token punctuation">[</span><span class="token plain">s</span><span class="token punctuation">]</span><span class="token plain">   item       </span><span class="token punctuation">{</span><span class="token punctuation">}</span><br></span><span class="token-line"><span class="token punctuation">[</span><span class="token plain">s</span><span class="token punctuation">]</span><span class="token plain">   settings   </span><span class="token operator">&lt;</span><span class="token plain">scrapy.settings.Settings object at 0x0000025111D1740</span><span class="token operator file-descriptor important">8</span><span class="token operator">&gt;</span><br></span><span class="token-line"><span class="token punctuation">[</span><span class="token plain">s</span><span class="token punctuation">]</span><span class="token plain"> Useful shortcuts:</span><br></span><span class="token-line"><span class="token punctuation">[</span><span class="token plain">s</span><span class="token punctuation">]</span><span class="token plain">   fetch</span><span class="token punctuation">(</span><span class="token plain">url</span><span class="token punctuation">[</span><span class="token plain">, </span><span class="token assign-left variable">redirect</span><span class="token operator">=</span><span class="token plain">True</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token plain"> Fetch URL and update </span><span class="token builtin class-name">local</span><span class="token plain"> objects </span><span class="token punctuation">(</span><span class="token plain">by default, redirects are followed</span><span class="token punctuation">)</span><br></span><span class="token-line"><span class="token punctuation">[</span><span class="token plain">s</span><span class="token punctuation">]</span><span class="token plain">   fetch</span><span class="token punctuation">(</span><span class="token plain">req</span><span class="token punctuation">)</span><span class="token plain">                  Fetch a scrapy.Request and update </span><span class="token builtin class-name">local</span><span class="token plain"> objects</span><br></span><span class="token-line"><span class="token punctuation">[</span><span class="token plain">s</span><span class="token punctuation">]</span><span class="token plain">   shelp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token plain">           Shell </span><span class="token builtin class-name">help</span> <span class="token punctuation">(</span><span class="token plain">print this </span><span class="token builtin class-name">help</span><span class="token punctuation">)</span><br></span><span class="token-line"><span class="token punctuation">[</span><span class="token plain">s</span><span class="token punctuation">]</span><span class="token plain">   view</span><span class="token punctuation">(</span><span class="token plain">response</span><span class="token punctuation">)</span><span class="token plain">    View response </span><span class="token keyword">in</span><span class="token plain"> a browser</span><br></span><span class="token-line"><span class="token plain">In </span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token plain">:</span><br></span></code></pre>
+</div>
+</div>
+<hr>
+<h4 id="fetch-the-page" class="anchor anchorWithStickyNavbar_mojV">Fetch The Page<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#fetch-the-page" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h4>
+<p>To create our CSS selectors we will be testing them on the following page:</p>
+<p><a class="external" href="https://www.chocolate.co.uk/collections/all" target="_blank"><span>https://www.chocolate.co.uk/collections/all</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></p>
+<p><img class="img_E7b_" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/tut1-site-a758cece70aff12378c2daa74528e2b1.png" alt="Chocolate shop" width="2872" height="1336"></p>
+<p>The first thing we want to do is fetch the main products page of the chocolate site in our Scrapy shell.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">fetch</span><span class="token punctuation">(</span><span class="token string">'https://www.chocolate.co.uk/collections/all'</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<p>We should see a response like this:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">In </span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token plain">: fetch</span><span class="token punctuation">(</span><span class="token string">'https://www.chocolate.co.uk/collections/all'</span><span class="token punctuation">)</span><br></span><span class="token-line"><span class="token number">2021</span><span class="token plain">-12-22 </span><span class="token number">13</span><span class="token plain">:28:56 </span><span class="token punctuation">[</span><span class="token plain">scrapy.core.engine</span><span class="token punctuation">]</span><span class="token plain"> INFO: Spider opened</span><br></span><span class="token-line"><span class="token number">2021</span><span class="token plain">-12-22 </span><span class="token number">13</span><span class="token plain">:28:57 </span><span class="token punctuation">[</span><span class="token plain">scrapy.core.engine</span><span class="token punctuation">]</span><span class="token plain"> DEBUG: Crawled </span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span><span class="token plain">GET https://www.chocolate.co.uk/robots.txt</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token plain">referer: None</span><span class="token punctuation">)</span><br></span><span class="token-line"><span class="token number">2021</span><span class="token plain">-12-22 </span><span class="token number">13</span><span class="token plain">:28:57 </span><span class="token punctuation">[</span><span class="token plain">scrapy.core.engine</span><span class="token punctuation">]</span><span class="token plain"> DEBUG: Crawled </span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span><span class="token plain">GET https://www.chocolate.co.uk/collections/all</span><span class="token operator">&gt;</span> <span class="token punctuation">(</span><span class="token plain">referer: None</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<p>As we can see, we successful retrieve the page from<span>&nbsp;</span><code>chocolate.co.uk</code>, and Scrapy shell has automatically saved the HTML response in the response variable.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">In </span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token plain">: response</span><br></span><span class="token-line"><span class="token plain">Out</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token plain">: </span><span class="token operator">&lt;</span><span class="token number">200</span><span class="token plain"> https://www.chocolate.co.uk/collections/all</span><span class="token operator">&gt;</span><br></span></code></pre>
+</div>
+</div>
+<hr>
+<h4 id="find-product-css-selectors" class="anchor anchorWithStickyNavbar_mojV">Find Product CSS Selectors<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#find-product-css-selectors" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h4>
+<p>To find the correct CSS selectors to parse the product details we will first open the page in our browsers DevTools.</p>
+<p>Open the<span>&nbsp;</span><a class="external" href="https://www.chocolate.co.uk/collections/all" target="_blank"><span>website</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a>, then open the developer tools console (right click on the page and click inspect).</p>
+<p><img class="img_E7b_" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/tut1-console-99f6f8dea39d39d389eb53f81d4e2e14.png" alt="Chocolate shop" width="2220" height="1292"></p>
+<p>Using the inspect element, hover over the item and look at the id's and classes on the individual products.</p>
+<p>In this case we can see that each box of chocolates has its own special component which is called<span>&nbsp;</span><code>product-item</code>. We can just use this to reference our products (see above image).</p>
+<p>Now using our Scrapy shell we can see if we can extract the product informaton using this class.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">response.css</span><span class="token punctuation">(</span><span class="token string">'product-item'</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<p>We can see that it has found all the elements that match this selector.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">In </span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token plain">: response.css</span><span class="token punctuation">(</span><span class="token string">'product-item'</span><span class="token punctuation">)</span><br></span><span class="token-line"><span class="token plain">Out</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token plain">:</span><br></span><span class="token-line"><span class="token punctuation">[</span><span class="token operator">&lt;</span><span class="token plain">Selector </span><span class="token assign-left variable">xpath</span><span class="token operator">=</span><span class="token string">'descendant-or-self::product-item'</span> <span class="token assign-left variable">data</span><span class="token operator">=</span><span class="token string">'&lt;product-item class="product-item pro...'</span><span class="token operator">&gt;</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token operator">&lt;</span><span class="token plain">Selector </span><span class="token assign-left variable">xpath</span><span class="token operator">=</span><span class="token string">'descendant-or-self::product-item'</span> <span class="token assign-left variable">data</span><span class="token operator">=</span><span class="token string">'&lt;product-item class="product-item " r...'</span><span class="token operator">&gt;</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token operator">&lt;</span><span class="token plain">Selector </span><span class="token assign-left variable">xpath</span><span class="token operator">=</span><span class="token string">'descendant-or-self::product-item'</span> <span class="token assign-left variable">data</span><span class="token operator">=</span><span class="token string">'&lt;product-item class="product-item " r...'</span><span class="token operator">&gt;</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token operator">&lt;</span><span class="token plain">Selector </span><span class="token assign-left variable">xpath</span><span class="token operator">=</span><span class="token string">'descendant-or-self::product-item'</span> <span class="token assign-left variable">data</span><span class="token operator">=</span><span class="token string">'&lt;product-item class="product-item " r...'</span><span class="token operator">&gt;</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token operator">&lt;</span><span class="token plain">Selector </span><span class="token assign-left variable">xpath</span><span class="token operator">=</span><span class="token string">'descendant-or-self::product-item'</span> <span class="token assign-left variable">data</span><span class="token operator">=</span><span class="token string">'&lt;product-item class="product-item " r...'</span><span class="token operator">&gt;</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token operator">&lt;</span><span class="token plain">Selector </span><span class="token assign-left variable">xpath</span><span class="token operator">=</span><span class="token string">'descendant-or-self::product-item'</span> <span class="token assign-left variable">data</span><span class="token operator">=</span><span class="token string">'&lt;product-item class="product-item pro...'</span><span class="token operator">&gt;</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token punctuation">..</span><span class="token plain">.</span><br></span></code></pre>
+</div>
+</div>
+<hr>
+<h4 id="get-first-product" class="anchor anchorWithStickyNavbar_mojV">Get First Product<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#get-first-product" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h4>
+<p>To just get the first product we use<span>&nbsp;</span><code>.get()</code><span>&nbsp;</span>appended to the end of the command.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">response.css</span><span class="token punctuation">(</span><span class="token string">'product-item'</span><span class="token punctuation">)</span><span class="token plain">.get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<p>This returns all the HTML in this node of the DOM tree.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">In </span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token plain">: response.css</span><span class="token punctuation">(</span><span class="token string">'product-item'</span><span class="token punctuation">)</span><span class="token plain">.get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br></span><span class="token-line"><span class="token plain">Out</span><span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token plain">: '</span><span class="token operator">&lt;</span><span class="token plain">product-item </span><span class="token assign-left variable">class</span><span class="token operator">=</span><span class="token string">"product-item product-item--sold-out"</span><span class="token plain"> reveal</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token plain">div </span><span class="token assign-left variable">class</span><span class="token operator">=</span><span class="token string">"product-item__image-wrapper product-item__image-wrapper--multiple"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token plain">div </span><span class="token assign-left variable">class</span><span class="token operator">=</span><span class="token string">"product-item__label-list label-list"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token plain">span </span><span class="token assign-left variable">class</span><span class="token operator">=</span><span class="token string">"label label--custom"</span><span class="token operator">&gt;</span><span class="token plain">New</span><span class="token operator">&lt;</span><span class="token plain">/span</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token plain">span </span><span class="token assign-left variable">class</span><span class="token operator">=</span><span class="token string">"label label--subdued"</span><span class="token operator">&gt;</span><span class="token plain">Sold out</span><span class="token operator">&lt;</span><span class="token plain">/span</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token plain">/div</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token plain">a </span><span class="token assign-left variable">href</span><span class="token operator">=</span><span class="token string">"/products/100-dark-hot-chocolate-flakes"</span> <span class="token assign-left variable">class</span><span class="token operator">=</span><span class="token string">"product-item__aspect-ratio aspect-ratio "</span> <span class="token assign-left variable">style</span><span class="token operator">=</span><span class="token string">"padding-bottom: 100.0%; --aspect-ratio: 1.0"</span><span class="token operator">&gt;</span><span class="token punctuation">\</span><span class="token plain">n </span><br></span><span class="token-line"><span class="token punctuation">..</span><span class="token plain">.</span><br></span></code></pre>
+</div>
+</div>
+<hr>
+<h4 id="get-all-products" class="anchor anchorWithStickyNavbar_mojV">Get All Products<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#get-all-products" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h4>
+<p>Now that we have found the DOM node that contains the product items, we will get all of them and save this data into a response variable and loop through the items and extract the data we need.</p>
+<p>So can do this with the following command.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">products </span><span class="token operator">=</span><span class="token plain"> response.css</span><span class="token punctuation">(</span><span class="token string">'product-item'</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<p>The products variable, is now an list of all the products on the page.</p>
+<p>To check the length of the products variable we can see how many products are there.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">len</span><span class="token punctuation">(</span><span class="token plain">products</span><span class="token punctuation">)</span> <br></span></code></pre>
+</div>
+</div>
+<p>Here is the output:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">In </span><span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token plain">: len</span><span class="token punctuation">(</span><span class="token plain">products</span><span class="token punctuation">)</span><br></span><span class="token-line"><span class="token plain">Out</span><span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token plain">: </span><span class="token number">24</span><br></span></code></pre>
+</div>
+</div>
+<hr>
+<h4 id="extract-product-details" class="anchor anchorWithStickyNavbar_mojV">Extract Product Details<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#extract-product-details" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h4>
+<p>Now lets extract the<span>&nbsp;</span><strong>name</strong>,<span>&nbsp;</span><strong>price</strong><span>&nbsp;</span>and<span>&nbsp;</span><strong>url</strong><span>&nbsp;</span>of each product from the list of products.</p>
+<p>The products variable is a list of products. When we update our spider code, we will loop through this list, however, to find the correct selectors we will test the CSS selectors on the first element of the list<span>&nbsp;</span><code>products[0]</code>.</p>
+<p><strong>Single Product -</strong><span>&nbsp;</span>Get single product.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">product </span><span class="token operator">=</span><span class="token plain"> products</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><br></span></code></pre>
+</div>
+</div>
+<p><strong>Name -</strong><span>&nbsp;</span>The product name can be found with:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">product.css</span><span class="token punctuation">(</span><span class="token string">'a.product-item-meta__title::text'</span><span class="token punctuation">)</span><span class="token plain">.get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">In </span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token plain">: product.css</span><span class="token punctuation">(</span><span class="token string">'a.product-item-meta__title::text'</span><span class="token punctuation">)</span><span class="token plain">.get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br></span><span class="token-line"><span class="token plain">Out</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token plain">: </span><span class="token string">'100% Dark Hot Chocolate Flakes'</span><br></span></code></pre>
+</div>
+</div>
+<p><strong>Price -</strong><span>&nbsp;</span>The product price can be found with:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">product.css</span><span class="token punctuation">(</span><span class="token string">'span.price'</span><span class="token punctuation">)</span><span class="token plain">.get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<p>You can see that the data returned for the price has lots of extra HTML. We'll get rid of this in the next step.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">In </span><span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token plain">: product.css</span><span class="token punctuation">(</span><span class="token string">'span.price'</span><span class="token punctuation">)</span><span class="token plain">.get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br></span><span class="token-line"><span class="token plain">Out</span><span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token plain">: </span><span class="token string">'&lt;span class="price"&gt;\n              &lt;span class="visually-hidden"&gt;Sale price&lt;/span&gt;▒8.50&lt;/span&gt;'</span><br></span></code></pre>
+</div>
+</div>
+<p>To remove the extra span tags from our price we can use the<span>&nbsp;</span><code>.replace()</code><span>&nbsp;</span>method. The replace method can be useful when we need to clean up data.</p>
+<p>Here we're going to replace the<span>&nbsp;</span><code>&lt;span&gt;</code><span>&nbsp;</span>sections with empty quotes<span>&nbsp;</span><code>''</code>:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">product.css</span><span class="token punctuation">(</span><span class="token string">'span.price'</span><span class="token punctuation">)</span><span class="token plain">.get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token plain">.replace</span><span class="token punctuation">(</span><span class="token string">'&lt;span class="price"&gt;\n              &lt;span class="visually-hidden"&gt;Sale price&lt;/span&gt;'</span><span class="token plain">,</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token plain">.replace</span><span class="token punctuation">(</span><span class="token string">'&lt;/span&gt;'</span><span class="token plain">,</span><span class="token string">''</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">In </span><span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token plain">: product.css</span><span class="token punctuation">(</span><span class="token string">'span.price'</span><span class="token punctuation">)</span><span class="token plain">.get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token plain">.replace</span><span class="token punctuation">(</span><span class="token string">'&lt;span class="price"&gt;\n              &lt;span class="visually-hidden"&gt;Sale price&lt;/span&gt;'</span><span class="token plain">,</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token plain">.replace</span><span class="token punctuation">(</span><span class="token string">'&lt;/span&gt;'</span><span class="token plain">,</span><span class="token string">''</span><span class="token punctuation">)</span><br></span><span class="token-line"><span class="token plain">Out</span><span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token plain">: </span><span class="token string">'8.50'</span><br></span></code></pre>
+</div>
+</div>
+<p><strong>Product URL -</strong><span>&nbsp;</span>Next lets see how we can extract the product url for each individual product. To do that we can use the attrib function on the end of<span>&nbsp;</span><code>products.css('div.product-item-meta a')</code></p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">product.css</span><span class="token punctuation">(</span><span class="token string">'div.product-item-meta a'</span><span class="token punctuation">)</span><span class="token plain">.attrib</span><span class="token punctuation">[</span><span class="token string">'href'</span><span class="token punctuation">]</span><br></span></code></pre>
+</div>
+</div>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">In </span><span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token plain">: product.css</span><span class="token punctuation">(</span><span class="token string">'div.product-item-meta a'</span><span class="token punctuation">)</span><span class="token plain">.attrib</span><span class="token punctuation">[</span><span class="token string">'href'</span><span class="token punctuation">]</span><br></span><span class="token-line"><span class="token plain">Out</span><span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token plain">: </span><span class="token string">'/products/100-dark-hot-chocolate-flakes'</span><br></span></code></pre>
+</div>
+</div>
+<hr>
+<h4 id="updated-spider" class="anchor anchorWithStickyNavbar_mojV">Updated Spider<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#updated-spider" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h4>
+<p>Now, that we've found the correct CSS selectors let's update our spider. Exit Scrapy shell with the<span>&nbsp;</span><code>exit()</code><span>&nbsp;</span>command.</p>
+<p>Our updated Spider code should look like this:</p>
+<div class="language-python codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-python codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token keyword">import</span><span class="token plain"> scrapy </span><br></span><span class="token-line"><br></span><span class="token-line"><span class="token keyword">class</span> <span class="token class-name">ChocolatespiderSpider</span><span class="token punctuation">(</span><span class="token plain">scrapy</span><span class="token punctuation">.</span><span class="token plain">Spider</span><span class="token punctuation">)</span><br></span><span class="token-line"><br></span><span class="token-line">    <span class="token comment">#the name of the spider</span><br></span><span class="token-line"><span class="token plain">    name </span><span class="token operator">=</span> <span class="token string">'chocolatespider'</span><br></span><span class="token-line"><br></span><span class="token-line">    <span class="token comment">#the url of the first page that we will start scraping</span><br></span><span class="token-line"><span class="token plain">    start_urls </span><span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'https://www.chocolate.co.uk/collections/all'</span><span class="token punctuation">]</span><br></span><span class="token-line"><br></span><span class="token-line">    <span class="token keyword">def</span> <span class="token function">parse</span><span class="token punctuation">(</span><span class="token plain">self</span><span class="token punctuation">,</span><span class="token plain"> response</span><span class="token punctuation">)</span><span class="token punctuation">:</span><br></span><span class="token-line"><br></span><span class="token-line">        <span class="token comment">#here we are looping through the products and extracting the name, price &amp; url</span><br></span><span class="token-line"><span class="token plain">        products </span><span class="token operator">=</span><span class="token plain"> response</span><span class="token punctuation">.</span><span class="token plain">css</span><span class="token punctuation">(</span><span class="token string">'product-item'</span><span class="token punctuation">)</span><br></span><span class="token-line">        <span class="token keyword">for</span><span class="token plain"> product </span><span class="token keyword">in</span><span class="token plain"> products</span><span class="token punctuation">:</span><br></span><span class="token-line">            <span class="token comment">#here we put the data returned into the format we want to output for our csv or json file</span><br></span><span class="token-line">            <span class="token keyword">yield</span><span class="token punctuation">{</span><br></span><span class="token-line">                <span class="token string">'name'</span> <span class="token punctuation">:</span><span class="token plain"> product</span><span class="token punctuation">.</span><span class="token plain">css</span><span class="token punctuation">(</span><span class="token string">'a.product-item-meta__title::text'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token plain">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br></span><span class="token-line">                <span class="token string">'price'</span> <span class="token punctuation">:</span><span class="token plain"> product</span><span class="token punctuation">.</span><span class="token plain">css</span><span class="token punctuation">(</span><span class="token string">'span.price'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token plain">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token plain">replace</span><span class="token punctuation">(</span><span class="token string">'&lt;span class="price"&gt;\n              &lt;span class="visually-hidden"&gt;Sale price&lt;/span&gt;'</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token plain">replace</span><span class="token punctuation">(</span><span class="token string">'&lt;/span&gt;'</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br></span><span class="token-line">                <span class="token string">'url'</span> <span class="token punctuation">:</span><span class="token plain"> product</span><span class="token punctuation">.</span><span class="token plain">css</span><span class="token punctuation">(</span><span class="token string">'div.product-item-meta a'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token plain">attrib</span><span class="token punctuation">[</span><span class="token string">'href'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><br></span><span class="token-line">            <span class="token punctuation">}</span><br></span></code></pre>
+</div>
+</div>
+<p>Here, our spider does the following steps:</p>
+<ol>
+<li>Makes a request to<span>&nbsp;</span><code>'https://www.chocolate.co.uk/collections/all'</code>.</li>
+<li>When it gets a response, it extracts all the products from the page using<span>&nbsp;</span><code>products = response.css('product-item')</code>.</li>
+<li>Loops through each product, and extracts the<span>&nbsp;</span><strong>name</strong>,<span>&nbsp;</span><strong>price</strong><span>&nbsp;</span>and<span>&nbsp;</span><strong>url</strong><span>&nbsp;</span>using the CSS selectors we created.</li>
+<li>Yields these items so they can be stored in a CSV, JSON, DB, etc.</li>
+</ol>
+<hr>
+<h3 id="step-5---running-our-spider" class="anchor anchorWithStickyNavbar_mojV">Step 5 - Running Our Spider<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-5---running-our-spider" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h3>
+<p>Now that we have a spider we can run it by going to the top level in our scrapy project and running the following command.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">scrapy crawl chocolatespider </span><br></span></code></pre>
+</div>
+</div>
+<p>It will run, and you should see the logs on your screen. Here are the final stats:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token number">2021</span><span class="token plain">-12-22 </span><span class="token number">14</span><span class="token plain">:43:54 </span><span class="token punctuation">[</span><span class="token plain">scrapy.statscollectors</span><span class="token punctuation">]</span><span class="token plain"> INFO: Dumping Scrapy stats:</span><br></span><span class="token-line"><span class="token punctuation">{</span><span class="token string">'downloader/request_bytes'</span><span class="token builtin class-name">:</span> <span class="token number">707</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'downloader/request_count'</span><span class="token builtin class-name">:</span> <span class="token number">2</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'downloader/request_method_count/GET'</span><span class="token builtin class-name">:</span> <span class="token number">2</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'downloader/response_bytes'</span><span class="token builtin class-name">:</span> <span class="token number">64657</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'downloader/response_count'</span><span class="token builtin class-name">:</span> <span class="token number">2</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'downloader/response_status_count/200'</span><span class="token builtin class-name">:</span> <span class="token number">2</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'elapsed_time_seconds'</span><span class="token builtin class-name">:</span> <span class="token number">0.794875</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'finish_reason'</span><span class="token builtin class-name">:</span> <span class="token string">'finished'</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'finish_time'</span><span class="token builtin class-name">:</span><span class="token plain"> datetime.datetime</span><span class="token punctuation">(</span><span class="token number">2021</span><span class="token plain">, </span><span class="token number">12</span><span class="token plain">, </span><span class="token number">22</span><span class="token plain">, </span><span class="token number">13</span><span class="token plain">, </span><span class="token number">43</span><span class="token plain">, </span><span class="token number">54</span><span class="token plain">, </span><span class="token number">937791</span><span class="token punctuation">)</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'httpcompression/response_bytes'</span><span class="token builtin class-name">:</span> <span class="token number">268118</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'httpcompression/response_count'</span><span class="token builtin class-name">:</span> <span class="token number">2</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'item_scraped_count'</span><span class="token builtin class-name">:</span> <span class="token number">24</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'log_count/DEBUG'</span><span class="token builtin class-name">:</span> <span class="token number">26</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'log_count/INFO'</span><span class="token builtin class-name">:</span> <span class="token number">10</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'response_received_count'</span><span class="token builtin class-name">:</span> <span class="token number">2</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'robotstxt/request_count'</span><span class="token builtin class-name">:</span> <span class="token number">1</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'robotstxt/response_count'</span><span class="token builtin class-name">:</span> <span class="token number">1</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'robotstxt/response_status_count/200'</span><span class="token builtin class-name">:</span> <span class="token number">1</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'scheduler/dequeued'</span><span class="token builtin class-name">:</span> <span class="token number">1</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'scheduler/dequeued/memory'</span><span class="token builtin class-name">:</span> <span class="token number">1</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'scheduler/enqueued'</span><span class="token builtin class-name">:</span> <span class="token number">1</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'scheduler/enqueued/memory'</span><span class="token builtin class-name">:</span> <span class="token number">1</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'start_time'</span><span class="token builtin class-name">:</span><span class="token plain"> datetime.datetime</span><span class="token punctuation">(</span><span class="token number">2021</span><span class="token plain">, </span><span class="token number">12</span><span class="token plain">, </span><span class="token number">22</span><span class="token plain">, </span><span class="token number">13</span><span class="token plain">, </span><span class="token number">43</span><span class="token plain">, </span><span class="token number">54</span><span class="token plain">, </span><span class="token number">142916</span><span class="token punctuation">)</span><span class="token punctuation">}</span><br></span><span class="token-line"><span class="token number">2021</span><span class="token plain">-12-22 </span><span class="token number">14</span><span class="token plain">:43:54 </span><span class="token punctuation">[</span><span class="token plain">scrapy.core.engine</span><span class="token punctuation">]</span><span class="token plain"> INFO: Spider closed </span><span class="token punctuation">(</span><span class="token plain">finished</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<p>We can see from the above stats that our spider scraped 24 Items:<span>&nbsp;</span><code>'item_scraped_count': 24</code>.</p>
+<p>If we want to save the data to a JSON file we can use the<span>&nbsp;</span><code>-O</code><span>&nbsp;</span>option, followed by the name of the file.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">scrapy crawl chocolatespider -O myscrapeddata.json</span><br></span></code></pre>
+</div>
+</div>
+<p>If we want to save the data to a CSV file we can do so too.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">scrapy crawl chocolatespider -O myscrapeddata.csv</span><br></span></code></pre>
+</div>
+</div>
+<hr>
+<h3 id="step-6---navigating-to-the-next-page" class="anchor anchorWithStickyNavbar_mojV">Step 6 - Navigating to the "Next Page"<a class="hash-link external" title="Direct link to heading" href="https://thepythonscrapyplaybook.com/scrapy-beginners-guide/#step-6---navigating-to-the-next-page" target="_blank"><span>​</span><span class="external_link_icon" role="presentation"><span class="screenreader-only">Links to an external site.</span></span></a></h3>
+<p>So far the code is working great but we're only getting the products from the first page of the site, the url which we have listed in the start_url variable.</p>
+<p>So the next logical step is to go to the next page if there is one and scrape the item data from that too! So here's how we do that.</p>
+<p>First, lets open our Scrapy shell again, fetch the page and find the correct selector to get the<span>&nbsp;</span><strong>next page</strong><span>&nbsp;</span>button.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">scrapy shell</span><br></span></code></pre>
+</div>
+</div>
+<p>Then fetch the page again.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">fetch</span><span class="token punctuation">(</span><span class="token string">'https://www.chocolate.co.uk/collections/all'</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<p>And then get the href attribute that contains the url to the next page.</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">response.css</span><span class="token punctuation">(</span><span class="token string">'[rel="next"] ::attr(href)'</span><span class="token punctuation">)</span><span class="token plain">.get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token plain">In </span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token plain">: response.css</span><span class="token punctuation">(</span><span class="token string">'[rel="next"] ::attr(href)'</span><span class="token punctuation">)</span><span class="token plain">.get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br></span><span class="token-line"><span class="token plain">Out</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token plain">: </span><span class="token string">'/collections/all?page=2'</span><br></span></code></pre>
+</div>
+</div>
+<p>Now, we just need to update our spider to request this page after it has parsed all items from a page.</p>
+<div class="language-python codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-python codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token keyword">import</span><span class="token plain"> scrapy</span><br></span><span class="token-line"> <br></span><span class="token-line"><span class="token keyword">class</span> <span class="token class-name">ChocolateSpider</span><span class="token punctuation">(</span><span class="token plain">scrapy</span><span class="token punctuation">.</span><span class="token plain">Spider</span><span class="token punctuation">)</span><span class="token punctuation">:</span><br></span><span class="token-line"><br></span><span class="token-line">   <span class="token comment">#the name of the spider</span><br></span><span class="token-line"><span class="token plain">   name </span><span class="token operator">=</span> <span class="token string">'chocolatespider'</span><br></span><span class="token-line"><br></span><span class="token-line">   <span class="token comment">#these are the urls that we will start scraping</span><br></span><span class="token-line"><span class="token plain">   start_urls </span><span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'https://www.chocolate.co.uk/collections/all'</span><span class="token punctuation">]</span><br></span><span class="token-line"><br></span><span class="token-line">   <span class="token keyword">def</span> <span class="token function">parse</span><span class="token punctuation">(</span><span class="token plain">self</span><span class="token punctuation">,</span><span class="token plain"> response</span><span class="token punctuation">)</span><span class="token punctuation">:</span><br></span><span class="token-line"><br></span><span class="token-line"><span class="token plain">       products </span><span class="token operator">=</span><span class="token plain"> response</span><span class="token punctuation">.</span><span class="token plain">css</span><span class="token punctuation">(</span><span class="token string">'product-item'</span><span class="token punctuation">)</span><br></span><span class="token-line">       <span class="token keyword">for</span><span class="token plain"> product </span><span class="token keyword">in</span><span class="token plain"> products</span><span class="token punctuation">:</span><br></span><span class="token-line">           <span class="token comment">#here we put the data returned into the format we want to output for our csv or json file</span><br></span><span class="token-line">           <span class="token keyword">yield</span><span class="token punctuation">{</span><br></span><span class="token-line">               <span class="token string">'name'</span> <span class="token punctuation">:</span><span class="token plain"> product</span><span class="token punctuation">.</span><span class="token plain">css</span><span class="token punctuation">(</span><span class="token string">'a.product-item-meta__title::text'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token plain">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br></span><span class="token-line">               <span class="token string">'price'</span> <span class="token punctuation">:</span><span class="token plain"> product</span><span class="token punctuation">.</span><span class="token plain">css</span><span class="token punctuation">(</span><span class="token string">'span.price'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token plain">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token plain">replace</span><span class="token punctuation">(</span><span class="token string">'&lt;span class="price"&gt;\n              &lt;span class="visually-hidden"&gt;Sale price&lt;/span&gt;'</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token plain">replace</span><span class="token punctuation">(</span><span class="token string">'&lt;/span&gt;'</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span><br></span><span class="token-line">               <span class="token string">'url'</span> <span class="token punctuation">:</span><span class="token plain"> product</span><span class="token punctuation">.</span><span class="token plain">css</span><span class="token punctuation">(</span><span class="token string">'div.product-item-meta a'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token plain">attrib</span><span class="token punctuation">[</span><span class="token string">'href'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><br></span><span class="token-line">           <span class="token punctuation">}</span><br></span><span class="token-line"><br></span><span class="token-line"><span class="token plain">       next_page </span><span class="token operator">=</span><span class="token plain"> response</span><span class="token punctuation">.</span><span class="token plain">css</span><span class="token punctuation">(</span><span class="token string">'[rel="next"] ::attr(href)'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token plain">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><br></span><span class="token-line"><br></span><span class="token-line">       <span class="token keyword">if</span><span class="token plain"> next_page </span><span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span><span class="token punctuation">:</span><br></span><span class="token-line"><span class="token plain">           next_page_url </span><span class="token operator">=</span> <span class="token string">'https://www.chocolate.co.uk'</span> <span class="token operator">+</span><span class="token plain"> next_page</span><br></span><span class="token-line">           <span class="token keyword">yield</span><span class="token plain"> response</span><span class="token punctuation">.</span><span class="token plain">follow</span><span class="token punctuation">(</span><span class="token plain">next_page_url</span><span class="token punctuation">,</span><span class="token plain"> callback</span><span class="token operator">=</span><span class="token plain">self</span><span class="token punctuation">.</span><span class="token plain">parse</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<p>Here we see that our spider now, finds the URL of the next page and if it isn't none it appends it to the base URL and makes another request.</p>
+<p>Now in our Scrapy stats we see that we have scraped 5 pages, and extracted 73 items:</p>
+<div class="language-bash codeBlockContainer_MPoW theme-code-block">
+<div class="codeBlockContent_B9tL">
+<pre class="prism-code language-bash codeBlock__0OG thin-scrollbar"><code class="codeBlockLines_gEuF"><span class="token-line"><span class="token number">2021</span><span class="token plain">-12-22 </span><span class="token number">15</span><span class="token plain">:10:45 </span><span class="token punctuation">[</span><span class="token plain">scrapy.statscollectors</span><span class="token punctuation">]</span><span class="token plain"> INFO: Dumping Scrapy stats:</span><br></span><span class="token-line"><span class="token punctuation">{</span><span class="token string">'downloader/request_bytes'</span><span class="token builtin class-name">:</span> <span class="token number">2497</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'downloader/request_count'</span><span class="token builtin class-name">:</span> <span class="token number">5</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'downloader/request_method_count/GET'</span><span class="token builtin class-name">:</span> <span class="token number">5</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'downloader/response_bytes'</span><span class="token builtin class-name">:</span> <span class="token number">245935</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'downloader/response_count'</span><span class="token builtin class-name">:</span> <span class="token number">5</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'downloader/response_status_count/200'</span><span class="token builtin class-name">:</span> <span class="token number">5</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'elapsed_time_seconds'</span><span class="token builtin class-name">:</span> <span class="token number">2.441196</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'feedexport/success_count/FileFeedStorage'</span><span class="token builtin class-name">:</span> <span class="token number">1</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'finish_reason'</span><span class="token builtin class-name">:</span> <span class="token string">'finished'</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'finish_time'</span><span class="token builtin class-name">:</span><span class="token plain"> datetime.datetime</span><span class="token punctuation">(</span><span class="token number">2021</span><span class="token plain">, </span><span class="token number">12</span><span class="token plain">, </span><span class="token number">22</span><span class="token plain">, </span><span class="token number">14</span><span class="token plain">, </span><span class="token number">10</span><span class="token plain">, </span><span class="token number">45</span><span class="token plain">, </span><span class="token number">62280</span><span class="token punctuation">)</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'httpcompression/response_bytes'</span><span class="token builtin class-name">:</span> <span class="token number">986800</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'httpcompression/response_count'</span><span class="token builtin class-name">:</span> <span class="token number">5</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'item_scraped_count'</span><span class="token builtin class-name">:</span> <span class="token number">73</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'log_count/DEBUG'</span><span class="token builtin class-name">:</span> <span class="token number">78</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'log_count/INFO'</span><span class="token builtin class-name">:</span> <span class="token number">11</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'request_depth_max'</span><span class="token builtin class-name">:</span> <span class="token number">3</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'response_received_count'</span><span class="token builtin class-name">:</span> <span class="token number">5</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'robotstxt/request_count'</span><span class="token builtin class-name">:</span> <span class="token number">1</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'robotstxt/response_count'</span><span class="token builtin class-name">:</span> <span class="token number">1</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'robotstxt/response_status_count/200'</span><span class="token builtin class-name">:</span> <span class="token number">1</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'scheduler/dequeued'</span><span class="token builtin class-name">:</span> <span class="token number">4</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'scheduler/dequeued/memory'</span><span class="token builtin class-name">:</span> <span class="token number">4</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'scheduler/enqueued'</span><span class="token builtin class-name">:</span> <span class="token number">4</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'scheduler/enqueued/memory'</span><span class="token builtin class-name">:</span> <span class="token number">4</span><span class="token plain">,</span><br></span><span class="token-line"> <span class="token string">'start_time'</span><span class="token builtin class-name">:</span><span class="token plain"> datetime.datetime</span><span class="token punctuation">(</span><span class="token number">2021</span><span class="token plain">, </span><span class="token number">12</span><span class="token plain">, </span><span class="token number">22</span><span class="token plain">, </span><span class="token number">14</span><span class="token plain">, </span><span class="token number">10</span><span class="token plain">, </span><span class="token number">42</span><span class="token plain">, </span><span class="token number">621084</span><span class="token punctuation">)</span><span class="token punctuation">}</span><br></span><span class="token-line"><span class="token number">2021</span><span class="token plain">-12-22 </span><span class="token number">15</span><span class="token plain">:10:45 </span><span class="token punctuation">[</span><span class="token plain">scrapy.core.engine</span><span class="token punctuation">]</span><span class="token plain"> INFO: Spider closed </span><span class="token punctuation">(</span><span class="token plain">finished</span><span class="token punctuation">)</span><br></span></code></pre>
+</div>
+</div>
+<hr>
+<h2 id="next-steps" class="anchor anchorWithStickyNavbar_mojV"><span>Hope you had fun, and enough of the basics to get up and running scraping a simple ecommerce site with the above lab!</span></h2></div>
+
+
+  <div style="display: none;">
+    <span class="timestamp">1715583599</span>
+    <span class="due_date_string">05/12/2024</span>
+    <span class="due_time_string">11:59pm</span>
+  </div>
+</div>
+
+
+  
+<div style="display: none;" id="submit_assignment" data-context_code="course_6271" data-asset_string="assignment_88964">
+  <div class="content" id="submit_assignment_tabs">
+    <ul>
+        <li><a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#submit_online_upload_form" class="submit_online_upload_option">File Upload</a></li>
+    </ul>
+      
+<form id="submit_online_upload_form" class="submit_assignment_form" enctype="multipart/form-data" action="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964/submissions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓" autocomplete="off"><input type="hidden" name="authenticity_token" value="Gzpd5YBlOn77tDvbZdRsz/lcqgJyZNTXzLtKUl2qPH8oXA7W+Cp5RouADOoBth6jgRnENktPmpOF8y0GN+55Rg==" autocomplete="off">
+    <input value="online_upload" autocomplete="off" type="hidden" name="submission[submission_type]" id="submission_submission_type">
+    <input value="" id="submission_attachment_ids" autocomplete="off" type="hidden" name="submission[attachment_ids]">
+    <input id="eula_agreement_timestamp" autocomplete="off" type="hidden" name="submission[eula_agreement_timestamp]">
+    <table class="formtable" style="width: 100%;">
+      <tbody><tr>
+        <td colspan="2">
+          Upload a file, or choose a file you've already uploaded.
+          
+        </td>
+      </tr><tr>
+        <td colspan="2">
+          <span style="visibility: hidden"><label id="attachmentLabel" for="attachment_uploaded_data">File:</label></span>
+          <div class="submission_attachment" style="margin-bottom: 1em;">
+              <div class="attachment_wrapper" style="display: inline-block;"><button dir="ltr" cursor="pointer" type="button" tabindex="0" class="css-158u3ep-view--inlineBlock-baseButton"><span class="css-1rpus1y-baseButton__content"><span class="css-qi8ml9-baseButton__childrenLayout"><span class="css-1b1ptk2-baseButton__iconWrapper"><span class="css-quqv7u-baseButton__iconSVG"><svg name="IconUpload" viewBox="0 0 1920 1920" rotate="0" width="1em" height="1em" aria-hidden="true" role="presentation" focusable="false" class="css-1uh2md0-inlineSVG-svgIcon" style="width: 1em; height: 1em;"><g role="presentation"><path d="m1838.86 1451.576 81.14 81.37-361.566 361.566H361.566L0 1532.946l81.255-81.37 327.891 328.007h1101.708l328.006-328.007ZM962.333 25l500.285 500.285-81.14 81.37-361.795-361.681v1187.559H904.869V244.973L543.188 606.655l-81.14-81.37L962.333 25Z" fill-rule="evenodd"></path></g></svg></span></span><span class="css-1s7boi7-baseButton__childrenWrapper"><span class="css-11xkk0o-baseButton__children">Upload File</span></span></span></span></button><button dir="ltr" cursor="pointer" type="button" tabindex="0" class="css-1o9rzjh-view--inlineBlock-baseButton"><span class="css-1rpus1y-baseButton__content"><span class="css-qi8ml9-baseButton__childrenLayout"><span class="css-1b1ptk2-baseButton__iconWrapper"><span class="css-quqv7u-baseButton__iconSVG"><svg name="IconImage" viewBox="0 0 1920 1920" rotate="0" width="1em" height="1em" aria-hidden="true" role="presentation" focusable="false" class="css-1uh2md0-inlineSVG-svgIcon" style="width: 1em; height: 1em;"><g role="presentation"><path d="M1920 113v1694.118H0V113h1920Zm-112.941 112.941H112.94V1694.29h1694.12V225.941ZM935.944 1058.77c182.851-258.409 332.498-286.87 426.691-264.847 160.716 37.384 272.076 242.26 330.805 608.98l10.504 65.392H207.924l20.104-71.718c85.384-306.07 172.913-457.072 283.37-489.712 102.55-30.156 185.336 43.82 258.86 109.1 43.596 38.514 90.806 81.092 122.542 78.834 15.925-1.807 32.188-20.556 43.144-36.029Zm401.167-154.842c-83.012-19.313-196.066 60.762-308.895 220.01-35.237 49.807-76.348 77.816-122.315 83.124-76.226 9.024-138.182-42.827-198.812-96.266l-3.868-3.413c-2.578-2.276-5.154-4.552-7.73-6.824-54.211-48.113-110.682-97.017-152.018-85.384-34.447 10.165-102.325 69.12-185.788 340.179h1212.762c-50.485-265.186-134.4-428.386-233.336-451.426ZM677.647 338.882c124.574 0 225.882 101.309 225.882 225.883 0 124.574-101.308 225.882-225.882 225.882S451.765 689.34 451.765 564.765s101.308-225.883 225.882-225.883Zm0 112.942c-62.343 0-112.941 50.71-112.941 112.94 0 62.231 50.598 112.942 112.941 112.942 62.344 0 112.941-50.71 112.941-112.941 0-62.23-50.597-112.941-112.94-112.941Z" fill-rule="evenodd"></path></g></svg></span></span><span class="css-1s7boi7-baseButton__childrenWrapper"><span class="css-11xkk0o-baseButton__children">Use Webcam</span></span></span></span></button></div>
+            <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="remove_attachment_link no-hover" style="display: none;"><i class="icon-end" aria-hidden="true"></i><span class="screenreader-only">remove empty attachment</span></a>
+          </div><button class="Button Button--link add_another_file_link">
+            <i class="icon-add" aria-hidden="true"></i>
+            Add Another File
+          </button>
+          <div id="submission_attachment_blank" class="submission_attachment" style="display: none; margin-bottom: 1em;">
+              <div class="attachment_wrapper" style="display: inline-block;"></div>
+            <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="remove_attachment_link no-hover" style="display: none;"><i class="icon-end" aria-hidden="true"></i><span class="screenreader-only">remove empty attachment</span></a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td style="font-size: 0.8em;">
+          <button class="Button Button--link toggle_uploaded_files_link">Click here to find a file you've already uploaded</button><br>
+          <div id="uploaded_files" style="display: none;">
+        </div></td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <div class="textarea-emoji-container">
+            <div class="textarea-container">
+              <textarea class="submission_comment_textarea" placeholder="Comments..." title="Additional comments" name="submission[comment]" id="submission_comment"></textarea>
+              <span class="emoji-picker-container" style="display: none;"></span>
+            </div>
+            <div class="emoji-quick-picker-container" style="display: none;"></div>
+          </div>
+        </td>
+      </tr>
+      
+
+      
+
+      <tr>
+        <td colspan="2" class="button-container">
+          <button type="button" class="cancel_button btn">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="submit_file_button">Submit Assignment</button>
+          <span id="progress_indicator"></span>
+        </td>
+      </tr>
+    </tbody></table>
+</form>
+
+
+
+
+    <style>
+    #google_docs_tree li.folder {
+      cursor: pointer;
+    }
+    #google_docs_tree li.file {
+      cursor: pointer;
+      -moz-border-radius: 3px;
+      width: 80%;
+      padding-right: 20px;
+    }
+    #google_docs_tree li.file:hover {
+      background-color: #eee;
+    }
+    ul.instTree li span.active {
+      background: none;
+    }
+    #google_docs_tree li.file.leaf.active {
+      background-color: #ddd;
+    }
+    #google_docs_tree li.file .filename {
+      float: left;
+      max-width: 98%;
+    }
+    #google_docs_tree li.file .popout {
+      float: right;
+    }
+    </style>
+
+
+  </div>
+</div>
+
+
+
+
+
+  <div id="rubrics" class="mathjax_ignore" style="margin-bottom: 10px;">
+    <div style="display: none;" id="rubric_parameters">
+      <input type="hidden" name="rubric_association[association_type]" value="Assignment">
+      <input type="hidden" name="rubric_association[association_id]" value="88964">
+      <input type="hidden" name="rubric_association[purpose]" value="grading">
+    </div>
+    
+<div id="rubric_long_description_dialog" style="display: none;">
+  <div class="editing">
+    <form id="edit_criterion_form" class="no-margin-bottom">
+      <div>
+        <label class="rating_form_label">Description
+          <textarea class="description" rows="1" name="description"></textarea>
+        </label>
+      </div>
+      <div>
+        <label class="rating_form_label">Long Description
+          <textarea class="long_description" rows="4" name="long_description"></textarea>
+        </label>
+      </div>
+      <div class="button-container">
+        <button type="button" class="btn btn button-secondary cancel_button">Cancel</button>
+        <button type="button" class="btn save_button btn-primary">Update Criterion</button>
+      </div>
+    </form>
+  </div>
+  <div class="displaying">
+    <div class="long_description">
+    </div>
+  </div>
+</div>
+<div id="rubric_criterion_comments_dialog" style="display: none;">
+  <div class="criterion_description" style="border-bottom: 1px solid #ccc; padding: 5px 0; font-size: 1.2em; font-weight: bold; margin-bottom: 5px;" tabindex="-1"></div>
+  <div class="editing">
+    <label for="criterion_comments_textarea">
+      Additional Comments:
+    </label>
+    <textarea id="criterion_comments_textarea" class="criterion_comments" name="criterion_comments" style="width: 370px;"></textarea>
+    <div class="button-container">
+      <button type="button" class="btn btn button-secondary cancel_button">Cancel</button>
+      <button type="button" class="btn save_button">Update Comments</button>
+    </div>
+  </div>
+  <div class="displaying">
+    Additional Comments:
+    <div class="criterion_comments" style="margin-top: 10px;">
+    </div>
+  </div>
+</div>
+<div id="rubric_rating_dialog" style="display: none;">
+  <div class="description" style="border-bottom: 1px solid #ccc; padding: 5px 0; font-size: 1.2em; font-weight: bold; margin-bottom: 5px;">
+    <span id="edit_rating_form_criterion_description"></span>
+  </div>
+  <div class="editing">
+    <form id="edit_rating_form" class="no-margin-bottom">
+      <div class="toggle_for_hide_points">
+        <div><label id="rating_form_score_label" class="rating_form_label">Rating Score</label></div>
+        <span id="rating_form_max_score_label" hidden="">Rating max score</span>
+        <input id="points" aria-labelledby="rating_form_score_label" type="text" size="2" name="points" class="no-margin-bottom span1">
+        <span class="range_rating">to &gt;
+          <input aria-label="Rating min score" type="text" size="2" name="min_points" class="no-margin-bottom span1 min_points" placeholder="min">
+        </span>pts
+      </div>
+      <div>
+        <label for="rating_form_title" class="rating_form_label">Rating Title</label>
+        <input id="rating_form_title" type="text" class="rating_description" style="width: 90%;" name="description">
+      </div>
+      <div>
+        <label for="rating_form_description" class="rating_form_label">Rating Description</label>
+        <textarea id="rating_form_description" rows="4" style="width: 90%;" class="rating_long_description" name="rating_long_description" form="edit_rating_form"></textarea>
+      </div>
+      <div class="button-container">
+        <button type="button" class="btn button-secondary cancel_button">Cancel</button>
+        <button type="button" class="btn btn-primary save_button ok_button">Update Rating</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+  </div>
+  
+<div class="rubric_container rubric  " id="default_rubric" style="display: none;">
+  <div class="screenreader-only"><h2>Rubric</h2></div>
+  <div class="rubric_title">
+    <div style="display: none;" class="links displaying pull-right">
+      <a href="https://cpeonline.ucdavis.edu/courses/6271/rubrics/%7B%7B%20id%20%7D%7D" class=" edit_rubric_link no-print no-hover" style="" title="Edit Rubric" aria-label="Edit Rubric" role="button"><i class="icon-edit standalone-icon"></i></a>
+      <a href="https://cpeonline.ucdavis.edu/search/rubrics?q=" class="find_rubric_link no-print no-hover" style="" title="Find Another Rubric" aria-label="Find Another Rubric" role="button"><i class="icon-search standalone-icon"></i></a>
+        <a href="https://cpeonline.ucdavis.edu/courses/6271/rubric_associations/%7B%7B%20rubric_association_id%20%7D%7D" class="delete_rubric_link no-print no-hover" style="" title="Delete Rubric" aria-label="Delete Rubric" role="button"><i class="icon-trash standalone-icon"></i></a>
+      <div style="display: none;">
+        <div class="use_for_grading">&nbsp;</div>
+        <div class="free_form_criterion_comments">&nbsp;</div>
+        <div class="hide_score_total">&nbsp;</div>
+        <div class="hide_outcome_results">&nbsp;</div>
+        <div class="hide_points">&nbsp;</div>
+        <div class="rubric_association_id">&nbsp;</div>
+          <div class="user_id">&nbsp;</div>
+        <div class="assessment_type"></div>
+        <a href="https://cpeonline.ucdavis.edu/courses/6271/rubric_associations/%7B%7B%20rubric_association_id%20%7D%7D/assessments/%7B%7B%20assessment_id%20%7D%7D" rel="nofollow" class="edit_assessment_link">&nbsp;</a>
+        <a href="https://cpeonline.ucdavis.edu/courses/6271/rubrics/%7B%7B%20rubric_id%20%7D%7D" class="edit_rubric_url">&nbsp;</a>
+          <a href="https://cpeonline.ucdavis.edu/courses/6271/rubric_associations/%7B%7B%20association_id%20%7D%7D" class="delete_rubric_url">&nbsp;</a>
+      </div>
+    </div>
+    <div style="float: right; font-size: 0.8em; display: none;" class="links displaying locked">
+      <span style="">Can't change a rubric once you've started using it.</span>
+        <a href="https://cpeonline.ucdavis.edu/courses/6271/rubric_associations/%7B%7B%20association_id%20%7D%7D" class="delete_rubric_url" style="display: none;">&nbsp;</a>
+    </div>
+
+    <div class="editing" style="float: right;">
+      <a href="https://cpeonline.ucdavis.edu/search/rubrics?q=" class="find_rubric_link icon-search" style="" title="Find Existing Rubric">Find a Rubric</a>
+    </div>
+    <div class="editing" style="text-align: left">
+      <label for="rubric-title">Title:</label>
+      <input id="rubric-title" type="text" class="no-margin-bottom" name="title" value="Some Rubric" style="width: 200px;" maxlength="255" aria-label="Title:">
+      <a href="https://cpeonline.ucdavis.edu/search/rubrics?q=" style="display: none;"><img alt="" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/find-6164443e2a.png"> Find Rubric</a>
+    </div>
+    <div class="displaying">
+      <span class="title" tabindex="-1">Title</span>
+    </div>
+    <div class="has-assessments-warning" style="display: none;">
+      You've already rated students with this rubric. Any major changes could affect their assessment results.
+    </div>
+  </div>
+<table class="rubric_table">
+<caption>
+  <div class="screenreader-only">
+    <span class="title">Title</span>
+  </div>
+</caption>
+<thead>
+  <tr>
+    <th scope="col">Criteria</th>
+    <th scope="col">Ratings</th>
+    <th scope="col" class="toggle_for_hide_points ">
+      Pts
+    </th>
+  </tr>
+</thead>
+<tbody>
+  
+<tr id="criterion_blank" class="criterion blank" style="display: none;">
+  <td class="criterion_description hover-container pad-box-micro">
+    <div class="container">
+      <div class="links editing">
+          <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="edit_criterion_link" role="button"><i class="icon-edit standalone-icon"></i><span class="screenreader-only">Edit criterion description</span></a>
+          <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="delete_criterion_link" role="button"><i class="icon-trash standalone-icon"></i><span class="screenreader-only">Delete criterion row</span></a>
+      </div>
+      <div class="description_content">
+        <span class="outcome_sr_content" aria-hidden="true">
+          <i class="learning_outcome_flag icon-outcomes" aria-hidden="true"></i>
+          <span class="screenreader-only">This criterion is linked to a Learning Outcome</span>
+        </span>
+        <span class="description description_title">Description of criterion</span>
+        <span class="learning_outcome_id" style="display: none;"></span>
+        <span class="criterion_id" style="display: none;"></span>
+          <div class="long_description small_description"></div>
+        <div class="hide_when_learning_outcome ">
+          <div class="criterion_use_range_div editing toggle_for_hide_points ">
+            <label>Range
+              <input type="checkbox" class="criterion_use_range"></label>
+          </div>
+        </div>
+        <div class="threshold toggle_for_hide_points ">
+          threshold:
+          <span class="mastery_points">5</span> pts
+        </div>
+      </div>
+
+    </div>
+  </td>
+  <td style="padding: 0;">
+      <table class="ratings" style=""><tbody><tr>
+          <td class="rating edge_rating
+                
+                ">
+            <div class="container">
+              <div class="rating-main">
+                  <div class="editing links">
+                    <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="edit_rating_link" role="button"><i class="icon-edit standalone-icon"></i><span class="screenreader-only">Edit rating</span></a>
+                    <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="delete_rating_link"><i class="icon-trash standalone-icon"></i><span class="screenreader-only">Delete rating</span></a>
+                  </div>
+                  <div class="clear"></div>
+                <span class="nobr toggle_for_hide_points ">
+                  <span class="points">5</span>
+                  <span class="range_rating" style="display: none;">to &gt;<span class="min_points">0</span></span> pts
+                </span>
+                <div class="description rating_description_value">Full Marks</div>
+                <div class="rating_long_description small_description"></div>
+                <span class="rating_id" style="display: none;">blank</span>
+              </div>
+                <div class="editing links add_rating_link">
+                  <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="add_rating_link_after" aria-label="Add rating" role="button"><i class="icon-add icon-Solid"></i></a>
+                </div>
+            </div>
+          </td>
+          <td class="rating edge_rating
+                infinitesimal
+                ">
+            <div class="container">
+              <div class="rating-main">
+                  <div class="editing links">
+                    <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="edit_rating_link" role="button"><i class="icon-edit standalone-icon"></i><span class="screenreader-only">Edit rating</span></a>
+                    <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="delete_rating_link"><i class="icon-trash standalone-icon"></i><span class="screenreader-only">Delete rating</span></a>
+                  </div>
+                  <div class="clear"></div>
+                <span class="nobr toggle_for_hide_points ">
+                  <span class="points">0</span>
+                  <span class="range_rating" style="display: none;">to &gt;<span class="min_points">0</span></span> pts
+                </span>
+                <div class="description rating_description_value">No Marks</div>
+                <div class="rating_long_description small_description"></div>
+                <span class="rating_id" style="display: none;">blank_2</span>
+              </div>
+            </div>
+          </td>
+      </tr></tbody></table>
+      <div style="display: none; font-size: 0.8em; margin: 5px;" class="custom_ratings">
+        This area will be used by the assessor to leave comments related to this criterion.
+      </div>
+  </td>
+  <td class="nobr points_form toggle_for_hide_points ">
+    <div class="editing" style="white-space: normal">
+      <span style="white-space: nowrap; font-size: 0.8em">
+          
+            <input type="text" aria-label="Points" value="5" class="criterion_points span1 no-margin-bottom">
+           pts
+      </span><br>
+    </div>
+    <div class="displaying">
+      <span style="white-space: nowrap;">
+        <span class="criterion_rating_points_holder" style="display: none;">
+          <span class="criterion_rating_points">&nbsp;</span> /
+        </span>
+        <span class="display_criterion_points">5</span> pts<br>
+      </span>
+    </div>
+    <div class="ignoring">
+      <span> -- </span>
+    </div>
+    <div class="criterion_comments">
+        <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="no-hover criterion_comments_link" title="Additional Comments">
+          <img alt="Additional Comments" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/rubric_comment-ddae8546ab.png">
+        </a>
+        <div class="custom_rating" style="display: none;"></div>
+    </div>
+  </td>
+</tr>
+
+  <tr id="criterion_1" class="criterion" style="">
+  <td class="criterion_description hover-container pad-box-micro">
+    <div class="container">
+      <div class="links editing">
+          <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="edit_criterion_link" role="button"><i class="icon-edit standalone-icon"></i><span class="screenreader-only">Edit criterion description</span></a>
+          <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="delete_criterion_link" role="button"><i class="icon-trash standalone-icon"></i><span class="screenreader-only">Delete criterion row</span></a>
+      </div>
+      <div class="description_content">
+        <span class="outcome_sr_content" aria-hidden="true">
+          <i class="learning_outcome_flag icon-outcomes" aria-hidden="true"></i>
+          <span class="screenreader-only">This criterion is linked to a Learning Outcome</span>
+        </span>
+        <span class="description description_title">Description of criterion</span>
+        <span class="learning_outcome_id" style="display: none;"></span>
+        <span class="criterion_id" style="display: none;"></span>
+          <div class="long_description small_description"></div>
+        <div class="hide_when_learning_outcome ">
+          <div class="criterion_use_range_div editing toggle_for_hide_points ">
+            <label>Range
+              <input type="checkbox" class="criterion_use_range"></label>
+          </div>
+        </div>
+        <div class="threshold toggle_for_hide_points ">
+          threshold:
+          <span class="mastery_points">5</span> pts
+        </div>
+      </div>
+
+    </div>
+  </td>
+  <td style="padding: 0;">
+      <table class="ratings" style=""><tbody><tr>
+          <td class="rating edge_rating
+                
+                ">
+            <div class="container">
+              <div class="rating-main">
+                  <div class="editing links">
+                    <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="edit_rating_link" role="button"><i class="icon-edit standalone-icon"></i><span class="screenreader-only">Edit rating</span></a>
+                    <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="delete_rating_link"><i class="icon-trash standalone-icon"></i><span class="screenreader-only">Delete rating</span></a>
+                  </div>
+                  <div class="clear"></div>
+                <span class="nobr toggle_for_hide_points ">
+                  <span class="points">5</span>
+                  <span class="range_rating" style="display: none;">to &gt;<span class="min_points">0</span></span> pts
+                </span>
+                <div class="description rating_description_value">Full Marks</div>
+                <div class="rating_long_description small_description"></div>
+                <span class="rating_id" style="display: none;">blank</span>
+              </div>
+                <div class="editing links add_rating_link">
+                  <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="add_rating_link_after" aria-label="Add rating" role="button"><i class="icon-add icon-Solid"></i></a>
+                </div>
+            </div>
+          </td>
+          <td class="rating edge_rating
+                infinitesimal
+                ">
+            <div class="container">
+              <div class="rating-main">
+                  <div class="editing links">
+                    <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="edit_rating_link" role="button"><i class="icon-edit standalone-icon"></i><span class="screenreader-only">Edit rating</span></a>
+                    <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="delete_rating_link"><i class="icon-trash standalone-icon"></i><span class="screenreader-only">Delete rating</span></a>
+                  </div>
+                  <div class="clear"></div>
+                <span class="nobr toggle_for_hide_points ">
+                  <span class="points">0</span>
+                  <span class="range_rating" style="display: none;">to &gt;<span class="min_points">0</span></span> pts
+                </span>
+                <div class="description rating_description_value">No Marks</div>
+                <div class="rating_long_description small_description"></div>
+                <span class="rating_id" style="display: none;">blank_2</span>
+              </div>
+            </div>
+          </td>
+      </tr></tbody></table>
+      <div style="display: none; font-size: 0.8em; margin: 5px;" class="custom_ratings">
+        This area will be used by the assessor to leave comments related to this criterion.
+      </div>
+  </td>
+  <td class="nobr points_form toggle_for_hide_points ">
+    <div class="editing" style="white-space: normal">
+      <span style="white-space: nowrap; font-size: 0.8em">
+          
+            <input type="text" aria-label="Points" value="5" class="criterion_points span1 no-margin-bottom">
+           pts
+      </span><br>
+    </div>
+    <div class="displaying">
+      <span style="white-space: nowrap;">
+        <span class="criterion_rating_points_holder" style="display: none;">
+          <span class="criterion_rating_points">&nbsp;</span> /
+        </span>
+        <span class="display_criterion_points">5</span> pts<br>
+      </span>
+    </div>
+    <div class="ignoring">
+      <span> -- </span>
+    </div>
+    <div class="criterion_comments">
+        <a href="https://cpeonline.ucdavis.edu/courses/6271/assignments/88964?module_item_id=236179#" class="no-hover criterion_comments_link" title="Additional Comments">
+          <img alt="Additional Comments" src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/rubric_comment-ddae8546ab.png">
+        </a>
+        <div class="custom_rating" style="display: none;"></div>
+    </div>
+  </td>
+</tr><tr class="summary">
+    <td colspan="4">
+      <div class="total_points_holder toggle_for_hide_points " style="float: right; ">
+        <span>Total Points:
+            <span class="rubric_total">
+              5
+            </span>
+ <span class="assessing">out of 5</span>        </span>
+      </div>
+      <div class="editing pull-left">
+        <span id="add_criterion_holder" class="criterion_link"></span>
+      </div>
+      <div class="clear"></div>
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<table style="display: none;">
+  <tbody><tr id="edit_rubric">
+    <td colspan="4">
+      <form id="edit_rubric_form" class="edit-rubric-form no-margin-bottom">
+        <div class="rubric_custom_ratings" style="">
+          <input type="checkbox" id="rubric_custom_rating" class="rubric_custom_rating">
+          <label for="rubric_custom_rating">I'll write free-form comments when assessing students</label>
+        </div>
+          <div class="hide_points" style="">
+            <input type="checkbox" id="hide_points" class="hide_points_checkbox">
+            <label for="hide_points">Remove points from rubric</label>
+          </div>
+          <div class="hide_outcome_results" style="">
+            <input type="checkbox" id="hide_outcome_results" class="hide_outcome_results_checkbox">
+            <label for="hide_outcome_results">Don't post Outcomes results to Learning Mastery Gradebook</label>
+          </div>
+          <div class="rubric_grading" style="">
+            <input type="checkbox" id="grading_rubric" class="grading_rubric_checkbox">
+            <label for="grading_rubric">Use this rubric for assignment grading</label>
+          </div>
+        <div class="totalling_rubric" style="">
+          <input type="checkbox" id="totalling_rubric" class="totalling_rubric_checkbox">
+          <label for="totalling_rubric">Hide score total for assessment results</label>
+        </div>
+        <div class="ic-Action-header ic-Action-header--half-margin">
+          <div class="ic-Action-header__Primary">
+            <button type="button" class="Button cancel_button">Cancel</button>
+            <button type="submit" class="Button Button--primary save_button">Create Rubric</button>
+          </div>
+        </div>
+      </form>
+    </td>
+  </tr>
+</tbody></table>
+
+
+  <div id="assignment_external_tools"><div></div></div>
+
+  
+  <div id="sequence_footer" data-course-id="6271" data-asset-id="88964" data-asset-type="Assignment"><div class="module-sequence-padding"></div>
+<div class="module-sequence-footer" role="navigation" aria-label="Module Navigation">
+  <div class="module-sequence-footer-content">
+    
+      <span class="module-sequence-footer-button--previous" data-tooltip="right" data-html-tooltip-title="&lt;i class=&#39;icon-quiz&#39;&gt;&lt;/i&gt; Module 2 Quiz ">
+          <a href="https://cpeonline.ucdavis.edu/courses/6271/modules/items/221142" class="Button" aria-describedby="msf0-previous-desc" aria-label="Previous Module Item">
+            <i class="icon-mini-arrow-left"></i>Previous
+            <span id="msf0-previous-desc" class="hidden" hidden="">Previous: Module 2 Quiz </span>
+          </a>
+      </span>
+    
+
+    
+      <span class="module-sequence-footer-button--next" data-tooltip="left" data-html-tooltip-title="&lt;strong style=&#39;float:left&#39;&gt;Next Module:&lt;/strong&gt; &lt;br&gt; Week 3: AWS Data Engineering (Processing Big Data)">
+        <a href="https://cpeonline.ucdavis.edu/courses/6271/modules/items/220907" class="Button" aria-describedby="msf0-next-desc" aria-label="Next Module Item">
+          Next<i class="icon-mini-arrow-right"></i>
+          <span id="msf0-next-desc" class="hidden" hidden="">Next Module: Week 3: AWS Data Engineering (Processing Big Data)</span>
+        </a>
+      </span>
+    
+  </div>
+</div>
+</div>
+
+
+
+          </div>
+        </div>
+        <div id="right-side-wrapper" class="ic-app-main-content__secondary">
+          <aside id="right-side" role="complementary">
+            
+<div id="sidebar_content">
+
+
+</div>
+
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <div style="display:none;"><!-- Everything inside of this should always stay hidden -->
+        <div id="page_view_id">06c1d836-c556-4dda-93b1-ff1b8c24efb2</div>
+    </div>
+  <div id="aria_alerts" class="hide-text affix" role="alert" aria-live="assertive"></div>
+  <div id="StudentTray__Container"></div>
+  <div id="react-router-portals"></div>
+  
+
+  <iframe src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/post_message_forwarding.html" name="post_message_forwarding" title="post_message_forwarding" id="post_message_forwarding" sandbox="allow-scripts allow-same-origin" style="display:none;"></iframe>
+
+
+  <script>
+    Object.assign(
+      ENV,
+      {}
+    )
+  </script>
+
+<script>
+//<![CDATA[
+(window.bundles || (window.bundles = [])).push('inst_fs_service_worker');
+//]]>
+</script>
+  <script src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/js.js.download" defer="defer"></script>
+  <script src="./Assignment 2_ Scrapy_ How to build your first production scrapper!_files/open_enrollment.js.download" defer="defer"></script>
+
+</div> <!-- #application -->
+
+
+<div class="tinymce-a11y-checker-container"></div><div id="nav-tray-portal" style="position: relative; z-index: 99;"></div><div role="log" aria-live="assertive" aria-relevant="additions" class="ally-helper-hidden-accessible"></div></body></html>

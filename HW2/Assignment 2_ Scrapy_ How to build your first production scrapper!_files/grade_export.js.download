@@ -1,0 +1,112 @@
+
+   
+var url = window.location.href;
+
+var re = /https:\/\/cpeonline\.ucdavis\.edu\/courses\/\d+\/gradebook/i; 
+var res = /https:\/\/cpeonline\.ucdavis\.edu\/courses\/\d+\/gradebook\/speed_grader/i; 
+ 
+if (re.exec(url) === null || typeof international !== 'undefined' || res.exec(url) !== null){
+	console.log('Grade Export Not Loaded');
+}else{
+	//window.addEventListener("DOMContentLoaded", function (){
+		grades();
+	//});
+}
+	
+function grades() {
+	
+	set_headers();
+		
+	console.log('Grade Export Loaded');
+	
+	if(!contains(ENV.current_user_roles, 'admin') && !contains(ENV.current_user_roles, 'teacher')){
+		console.log(ENV.current_user_roles);
+		return;
+	}
+	
+	if(document.getElementById("gradebook_wrapper") == null){
+		return;
+	}
+
+	var gradeheader = document.getElementById("gradebook-actions");
+	
+	url = url.slice(url.indexOf("courses/") + 8);
+	
+	url = url.slice(0, url.indexOf("/"));
+
+	
+	if(ENV.GRADEBOOK_OPTIONS.grading_standard == false){
+		return;
+	}
+	
+	var button = document.createElement("a");
+	
+	button.setAttribute("id", "gradeexport");
+	
+	button.setAttribute("href", "https://intrepid.extensiononline.ucdavis.edu/utilities/grade_export.php?course=" + url);
+	
+	button.setAttribute("class", "btn btn-primary ak_export_grades fl");
+	
+	button.setAttribute("onclick", "return confirmation()");
+	
+	button.setAttribute("style", "margin-bottom: 12px;");
+	
+	button.setAttribute("data-featherlight-iframe-height", "600");
+	
+	button.setAttribute("data-featherlight-iframe-width", "800");
+	
+	button.setAttribute("data-featherlight", "iframe");
+	
+	button.innerHTML = "<i class='icon-post-to-sis' style='font-size: 18px;'></i> Submit Final Grades";
+	
+	gradeheader.appendChild(button);
+	
+	fetch("https://intrepid.extensiononline.ucdavis.edu/utilities/check_grades.php?course=" + url)
+		.then(response => response.json())
+		.then(data => data.status === "Grades Submitted" ? grades_submitted(data.date) : null)
+		.catch(error => console.log(error));
+}
+
+function grades_submitted(date){
+	document.getElementById("gradeexport").setAttribute('class', 'btn btn-success ak_export_grades fl');
+	document.getElementById("gradeexport").innerHTML = '<i class="icon-like icon-Solid" style="font-size: 18px;"></i> Grades Submitted (' + date + ')';
+}
+
+function confirmation(){
+	var message = "This will submit all the final grades to the grades clerk. \n\rPlease make sure all assignments are unmuted. Muted assignments will cause the final grade to be incorrect. \n\rPlease note that all ungraded assignments will be treated as though they have a grade of zero (0). \n\rIt is best practice to give all unsubmitted assignments a grade of zero (0) to avoid any confusion. You can also use the 'Treat ungraded as 0' option under the gear icon to see what grade will be submitted to the grades clerk.\n\rYou will have the opportunity to review the grades once more. Do you want to continue?";
+	return confirm(message);
+}
+
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+        if (a[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function set_headers(){
+	var script= document.createElement('link');
+	script.rel= 'stylesheet';
+	script.type= 'text/css';
+	script.href= 'https://ucde-kylo.s3.amazonaws.com/featherlight/featherlight.min.css';
+	script.media= 'screen,print';
+	head.appendChild(script);
+   
+	var script= document.createElement('script');
+	script.type= 'text/javascript';
+	script.src= 'https://ucde-kylo.s3.amazonaws.com/featherlight/featherlight.min.js';
+	head.appendChild(script);
+	
+	window.onload=function(){
+		$('a.fl').featherlight({
+			afterClose: function(event){
+				fetch("https://intrepid.extensiononline.ucdavis.edu/utilities/check_grades.php?course=" + url)
+					.then(response => response.json())
+					.then(data => data.status === "Grades Submitted" ? grades_submitted(data.date) : null)
+					.catch(error => console.log(error));
+			}
+		});
+	}
+}

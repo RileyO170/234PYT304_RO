@@ -1,0 +1,46 @@
+var head= document.getElementsByTagName('head')[0];
+
+var url = window.location.href;
+var res = /https:\/\/cpeonline\.ucdavis\.edu\/courses\/\d+\/gradebook\/speed_grader/i; 
+var res2 = /https:\/\/cpeonline\.ucdavis\.edu\/accounts\//i; 
+var res3 = /https:\/\/cpeonline\.ucdavis\.edu\/courses\/\d+\/analytics\/users\/\d+/i; 
+var res4 = /https:\/\/cpeonline\.ucdavis\.edu\/conversations/i; 
+var res5 = /https:\/\/cpeonline\.ucdavis\.edu\/courses\/\d+\/discussion_topics\/\d+/i; 
+var res6 = /https:\/\/cpeonline\.ucdavis\.edu\/courses\/\d+\/modules/i; 
+var res7 = /https:\/\/cpeonline\.ucdavis\.edu\/courses\/\d+\/gradebook/i; 
+
+if (res.exec(url) !== null || res2.exec(url) !== null || res3.exec(url) !== null || res4.exec(url) !== null || res5.exec(url) !== null || res6.exec(url) !== null || res7.exec(url) !== null){
+	console.log('External jQuery not Loaded');
+}else{
+	var script= document.createElement('script');
+		script.type= 'text/javascript';
+		script.src= 'https://ucde-kylo.s3.amazonaws.com/jquery-3.1.1.min.js';
+		head.appendChild(script);
+   
+	var script= document.createElement('script');
+		script.type= 'text/javascript';
+		script.src= 'https://ucde-kylo.s3.amazonaws.com/jquery-ui.min.js';
+		head.appendChild(script);
+}
+		
+	var script= document.createElement('script');
+		script.type= 'text/javascript';
+		script.src= 'https://ucde-kylo.s3.amazonaws.com/kennethware/canvasGlobal.js';
+		head.appendChild(script);
+		
+	var script= document.createElement('script');
+		script.type= 'text/javascript';
+		script.src= 'https://ucde-kylo.s3.amazonaws.com/scripts/grade_export.js';
+		head.appendChild(script);
+   
+	var script= document.createElement('script');
+		script.type= 'text/javascript';
+		script.src= 'https://ucde-kylo.s3.amazonaws.com/scripts/canvas_custom.js';
+		head.appendChild(script);
+		
+window.ALLY_CFG = {
+    'baseUrl': 'https://prod.ally.ac',
+    'clientId': 14911,
+    'lti13Id': '90380000000000177'
+};
+$.getScript(ALLY_CFG.baseUrl + '/integration/canvas/ally.js');
