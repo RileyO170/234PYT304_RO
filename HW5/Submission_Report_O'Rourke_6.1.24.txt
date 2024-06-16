@@ -1,0 +1,49 @@
+Submission Report
+
+[Executed at: Sat Jun 1 18:06:37 PDT 2024]
+
+gradeFile = /mnt/vocwork2/grader/eee_G_2538066/asn2864091_4/asn2864092_1/tmp/temp_uf_06012024/.hUehfh
+reportFile =/mnt/vocwork2/grader/eee_G_2538066/asn2864091_4/asn2864092_1/tmp/temp_uf_06012024/.PvKiuD
+/mnt/vocwork2/grader/eee_G_2538066/asn2864091_4/asn2864092_1/tmp/temp_uf_06012024/.hUehfh
+Started: 2024-06-01 18:06:32
+region: us-east-1
+profile: default
+
+Evaluating TASK 2 - Cluster created
+	cluster found? True
+	found cluster with ClusterIdentifier: redshift-cluster-1
+	node type : dc2.large
+	numNodes : 2
+	role assigned to cluster : arn:aws:iam::515395990824:role/MyRedshiftRole
+	VPC security groups: [{'VpcSecurityGroupId': 'sg-0fc0ac6e7697d24a2', 'Status': 'active'}]
+Task 2 - Success! A Redshift cluster was found.
+
+Evaluating TASK 2b - Security group associated
+Found sg: sg-0fc0ac6e7697d24a2
+Analyzing security group with id: sg-0fc0ac6e7697d24a2
+Task 2b - Success! A security group was found attached to the cluster, and that security group has an inbound rule that opens TCP port 5439.
+
+Evaluating TASK 3 - Tables created and data loaded
+	sales table data added
+	date table data added
+	users table data added
+	users table data added
+	users table data added
+	sales table created
+	data table created
+	users table created
+Task 3 - Success! The three tables were created and data was loaded into each table.
+
+Evaluating TASK 4 - Table data queried
+Task 4 - Success! Evidence was found that the table data was queried.
+
+Evaluating TASK 5 - Queried by using the AWS CLI
+Task 5 - Success! Evidence was found that data was queried by using the AWS CLI.
+
+Evaluating TASK 7 - IAM user queried data
+Task 7 - Success! Evidence was found that Mary’s IAM user queried the data.
+
+Completed: 2024-06-01 18:06:36
+
+Back in submit.sh...
+end

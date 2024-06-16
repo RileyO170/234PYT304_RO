@@ -1,0 +1,76 @@
+×Submission Report
+
+[Executed at: Sat Jun 8 15:25:58 PDT 2024]
+
+gradeFile = /mnt/vocwork2/grader/eee_G_2538066/asn2864099_8/asn2864100_1/tmp/temp_uf_06082024/.6OPUpe
+reportFile =/mnt/vocwork2/grader/eee_G_2538066/asn2864099_8/asn2864100_1/tmp/temp_uf_06082024/.lWBnhE
+/mnt/vocwork2/grader/eee_G_2538066/asn2864099_8/asn2864100_1/tmp/temp_uf_06082024/.6OPUpe
+Started: 2024-06-08 15:25:49
+region: us-east-1
+profile: default
+
+Evaluating TASK 1 - Files added to S3 bucket
+Found gluelab bucket.
+Task 1 - Success! The files were found in the gluelab bucket.
+
+Evaluating TASK 2 - AWS Glue database found
+dbFound: True
+workflowPOC ARN: arn:aws:states:us-east-1:001608339792:stateMachine:WorkflowPOC
+arn:aws:iam::001608339792:role/StepLabRole
+Correct role assigned to state machine
+Task 2 - Success! The AWS Glue database was found and the Step Functions workflow exists and has the correct IAM role associated with it.
+
+Evaluating TASK 3 - Verify Run Table Lookup added
+Task 3 - Success! A step named Run Table Lookup was found in the workflow.
+
+Evaluating TASK 4 - Choice state found in workflow
+Task 4 - Success! A choice state named ChoiceStateFirstRun was found in the workflow.
+
+Evaluating TASK 5 - Data table created
+Found Run Create data Table Query step in the workflow
+Task 5 - Error. A run named TaskFiveTest was not found in Step Functions, the test did not successfully complete, or a step named Run Create data Table Query was not in it.
+
+Evaluating TASK 6 - Lookup table created
+Found successful run named TaskSixTest
+Found Run Create lookup Table Query step in the workflow
+Task 6 - Success! A run named TaskSixTest was found, and it was successful.
+
+Evaluating TASK 7 - Parquet lookup table found
+Found nyctaxi_lookup_parquet table
+Found successful run named TaskSevenTest
+Task 7 - Success! An AWS Glue lookup table in Parquet format was found. A run named TaskSevenTest was found, and it was successful.
+
+Evaluating TASK 8 - Parquet data table partitioned
+Task 8 - Success! The table named yellowtaxi_data_parquet was  found and does contain partitioned data.
+
+Evaluating TASK 9 - View created
+Found view.
+Task 9 - Success! An Athena view named yellowtaxi_data_vw was found.
+
+Evaluating TASK 10 - Workflow created view
+Found successful run named TaskTenTest
+Found Run Create View step in the workflow
+Task 10 - Success! A run named TaskTenTest was found, and a Run Create View step was found in the workflow.
+
+Evaluating TASK 11 - Iterator added to workflow
+Found Insert New Parquet Data step in the workflow
+Task 11 - Success! A task named Insert New Parquet Data was found in the workflow.
+
+Evaluating TASK 12 - Final test success
+Found successful run named TaskTwelveTest
+Found Insert New Parquet Data step in the workflow
+Task 12 - Success! The run of the complete workflow was successful.
+
+Completed: 2024-06-08 15:25:57
+
+Back in submit.sh...
+end
+
+ Details AWS Details End Lab Start LabAWS01:32
+GradesSubmission ReportSubmit
+
+EN-US
+
+-
+
+
